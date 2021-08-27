@@ -1,16 +1,27 @@
 module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
-    title: "Courtney Whiting Porfolio",
+    title: "Courtney Whiting Portfolio",
   },
   plugins: [
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: "localhost:8880/wordpress",
+        url: "http://localhost:8880/wordpress/graphql",
+        protocol: "http",
+        hostingWPCOM: false,
+        useACF: true
       },
     },
-    "gatsby-plugin-sass",
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [
+          require("tailwindcss"),
+          // require("./tailwind.config.js"), // Optional: Load custom Tailwind CSS configuration
+        ],
+      },
+    },
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sharp",
