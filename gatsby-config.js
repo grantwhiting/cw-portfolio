@@ -7,10 +7,20 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: "http://localhost:8880/wordpress/graphql",
+        // url: "http://localhost:8880/wordpress/graphql",
+        url: "https://cwportfoliomaster.gatsbyjs.io/",
         protocol: "http",
         hostingWPCOM: false,
         useACF: true,
+        includedRoutes: [
+          //"**/categories",
+          "**/posts",
+          "**/pages",
+          // "**/media",
+          // "**/tags",
+          // "**/taxonomies",
+          // "**/users",
+        ],
       },
     },
     {
