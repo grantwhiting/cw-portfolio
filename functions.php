@@ -34,7 +34,7 @@
         'type' => [ 'list_of' => 'galleryImage' ],
         'resolve' => function() {
           $images = pods('project', [ 'limit' => -1 ])->field( 'gallery' );
-          return empty( $images ) ? [] : $images;
+          return empty( $images ) ? null : $images;
         }
       ]
     );

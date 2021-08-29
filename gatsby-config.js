@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://www.courtneywhiting.com",
     title: "Courtney Whiting Portfolio",
   },
   plugins: [
@@ -10,7 +10,7 @@ module.exports = {
         url: "http://localhost:8880/wordpress/graphql",
         protocol: "http",
         hostingWPCOM: false,
-        useACF: true
+        useACF: true,
       },
     },
     {
