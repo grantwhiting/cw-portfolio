@@ -7,8 +7,7 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        // url: "http://localhost:8880/wordpress/graphql",
-        url: "https://cwportfoliomaster.gatsbyjs.io/graphql",
+        url: "http://localhost:8880/wordpress/graphql",
         protocol: "https",
         // hostingWPCOM: false,
         // useACF: true,
@@ -23,15 +22,7 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        postCssPlugins: [
-          require("tailwindcss"),
-          // require("./tailwind.config.js"), // Optional: Load custom Tailwind CSS configuration
-        ],
-      },
-    },
+    "gatsby-plugin-sass",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sharp",
