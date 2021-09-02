@@ -29,7 +29,12 @@ const SideNav = ({ navItems, children }) => {
               Item {i}
             </SideNavItem>
           ))}
-        {showFilters && <SideNavItem to="/about">About</SideNavItem>}
+        {showFilters && (
+          <>
+            <SideNavItem to="?filter=all">All</SideNavItem>
+            <SideNavItem to="/about">About</SideNavItem>
+          </>
+        )}
         {!showFilters && <SideNavItem to="/">Home</SideNavItem>}
       </ul>
     </nav>
