@@ -3,7 +3,6 @@ import { PropTypes } from "prop-types";
 import Layout from "../components/layout";
 
 const About = ({ pageContext }) => {
-  console.log(pageContext);
   const { content } = pageContext;
 
   return (

@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import SideNav from "../components/side-nav";
+import { FiltersProvider } from "../contexts/filters-context";
 
 const Layout = ({ children }) => {
   return (
-    <>
+    <FiltersProvider initialFilters={[0, 1, 2, 3, 4]}>
       {/* <Helmet /> */}
       <div className="flex h-screen">
         <section
@@ -21,7 +22,7 @@ const Layout = ({ children }) => {
           {/* <Footer /> */}
         </section>
       </div>
-    </>
+    </FiltersProvider>
   );
 };
 
