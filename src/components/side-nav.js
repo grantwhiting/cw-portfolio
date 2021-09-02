@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
+import { useLocation } from "@reach/router";
 
 const SideNavItem = ({ to, children }) => {
   return (
@@ -17,15 +18,19 @@ const SideNavItem = ({ to, children }) => {
 };
 
 const SideNav = ({ navItems, children }) => {
+  const location = useLocation();
+  const showFilters = location.pathname === "/";
   return (
     <nav>
       <ul className="space-y-1">
-        {Array.from(Array(4)).map((_, i) => (
-          <SideNavItem key={i} to={`?filter=${i}`}>
-            Item {i}
-          </SideNavItem>
-        ))}
-        <SideNavItem to="/about-me">About</SideNavItem>
+        {showFilters &&
+          Array.from(Array(4)).map((_, i) => (
+            <SideNavItem key={i} to={`?filter=${i}`}>
+              Item {i}
+            </SideNavItem>
+          ))}
+        {showFilters && <SideNavItem to="/about">About</SideNavItem>}
+        {!showFilters && <SideNavItem to="/">Home</SideNavItem>}
       </ul>
     </nav>
   );
