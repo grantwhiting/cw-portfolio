@@ -12194,6 +12194,13 @@ table@^6.0.9:
     string-width "^4.2.0"
     strip-ansi "^6.0.0"
 
+tailwindcss-aspect-ratio@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-aspect-ratio/-/tailwindcss-aspect-ratio-3.0.0.tgz#4f9fc7ca0f3468373290faaa8b92652157bee6a4"
+  integrity sha512-syVueHOdk0u6S9lFSQQxHwsYS+9AJ0tp1WWBB+vAwmJYzc9g/2OLwq4mHpigYue6t3PUgTSbRi9unQd7WEDjGQ==
+  dependencies:
+    lodash "^4.17.15"
+
 tailwindcss@^2.2.9:
   version "2.2.9"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.2.9.tgz#1484bd45a4a9f9f5de7faabf74c11bf0aeb5ad98"

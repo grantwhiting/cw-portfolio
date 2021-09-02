@@ -7,16 +7,15 @@ const Layout = ({ children }) => {
   return (
     <>
       {/* <Helmet /> */}
-
-      <div className="flex h-screen pt-9">
+      <div className="flex h-screen">
         <section
-          className="flex-shrink-0 overflow-y-auto bg-gray-100"
+          className="flex-shrink-0 pt-10 overflow-y-auto bg-gray-100"
           style={{ width: "278px" }}
         >
           <SideNav />
         </section>
         <section className="flex flex-col flex-grow overflow-y-auto">
-          <main className="flex-grow w-full pb-12 m-auto max-w-screen-desk">
+          <main className="flex-grow w-full px-4 pb-12 m-auto max-w-screen-desk">
             {children}
           </main>
           {/* <Footer /> */}
@@ -24,6 +23,13 @@ const Layout = ({ children }) => {
       </div>
     </>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export default Layout;
