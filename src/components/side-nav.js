@@ -20,6 +20,7 @@ const SideNavItem = ({ to, children }) => {
 const SideNav = ({ navItems, children }) => {
   const location = useLocation();
   const showFilters = location.pathname === "/";
+
   return (
     <nav>
       <ul className="space-y-1">

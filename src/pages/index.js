@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import { navigate, useLocation, globalHistory } from "@reach/router";
 import { graphql } from "gatsby";
-
 const mockData = [
   { filter: 0 },
   { filter: 0 },
@@ -31,6 +30,10 @@ const mockData = [
   { filter: 4 },
 ];
 
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 const Index = () => {
   const loc = useLocation();
   const [currentFilter, setCurrentFilter] = useState("all");
@@ -43,11 +46,12 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="-mt-3 -ml-3 masonry-columns">
         {mockData.map((item, i) => (
           <div
             key={i}
-            className="relative bg-gray-50 aspect-ratio-16/9"
+            className="relative w-full mt-3 ml-3 bg-gray-50 break-inside-avoid"
+            style={{ height: randomIntFromInterval(250, 450) }}
             hidden={
               parseInt(currentFilter, 10) !== item.filter &&
               currentFilter !== "all"

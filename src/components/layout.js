@@ -4,18 +4,19 @@ import { Helmet } from "react-helmet";
 import SideNav from "../components/side-nav";
 
 const Layout = ({ children }) => {
+  const navWidth = "230px";
   return (
     <>
       {/* <Helmet /> */}
       <div className="flex h-screen">
         <section
-          className="flex-shrink-0 pt-10 overflow-y-auto bg-gray-100"
-          style={{ width: "278px" }}
+          className="flex-shrink-0 h-screen pt-10 overflow-y-auto bg-gray-100"
+          style={{ width: navWidth }}
         >
           <SideNav />
         </section>
-        <section className="flex flex-col flex-grow overflow-y-auto">
-          <main className="flex-grow w-full px-4 pb-12 m-auto max-w-screen-desk">
+        <section className="flex flex-col flex-grow">
+          <main className="flex-grow w-full px-4 pb-12 m-auto overflow-y-auto max-w-screen-desk">
             {children}
           </main>
           {/* <Footer /> */}

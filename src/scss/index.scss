@@ -3,13 +3,29 @@
 @tailwind utilities;
 
 @layer utilities {
-  @variants responsive {
-    .masonry {
-      column-gap: 1.5em;
-      column-count: 2;
+  @for $i from 1 to 5 {
+    .col-count-#{$i} {
+      columns: $i;
     }
-    .break-inside {
-      break-inside: avoid;
+  }
+
+  .masonry-columns {
+    columns: 1;
+
+    @media (min-width: 640px) {
+      columns: 2;
     }
+
+    @media (min-width: 1024px) {
+      columns: 3;
+    }
+
+    @media (min-width: 1280px) {
+      columns: 4;
+    }
+  }
+
+  .break-inside-avoid {
+    break-inside: avoid;
   }
 }
