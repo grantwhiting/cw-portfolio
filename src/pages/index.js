@@ -44,24 +44,26 @@ const Index = () => {
     });
   }, [loc]);
 
+  const showItem = (item) =>
+    parseInt(currentFilter, 10) === item.filter || currentFilter === "all";
+
   return (
     <Layout>
-      <div className="-mt-3 -ml-3 masonry-columns">
-        {mockData.map((item, i) => (
-          <div
-            key={i}
-            className="relative w-full mt-3 ml-3 bg-gray-50 break-inside-avoid"
-            style={{ height: randomIntFromInterval(250, 450) }}
-            hidden={
-              parseInt(currentFilter, 10) !== item.filter &&
-              currentFilter !== "all"
-            }
-          >
-            <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-              project {i}
-            </span>
-          </div>
-        ))}
+      <div className="masonry-columns">
+        {mockData.map(
+          (item, i) =>
+            showItem(item) && (
+              <div
+                key={i}
+                className="relative w-full mb-3 mr-3 bg-gray-50 break-inside-avoid"
+                style={{ height: randomIntFromInterval(250, 450) }}
+              >
+                <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                  project {i}
+                </span>
+              </div>
+            )
+        )}
       </div>
     </Layout>
   );
