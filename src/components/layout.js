@@ -7,10 +7,16 @@ const Layout = ({ children }) => {
   const navWidth = "230px";
   return (
     <>
-      {/* <Helmet /> */}
+      <Helmet>
+        <title>Courtney Whiting's Portfolio</title>
+        <link
+          href="https://use.typekit.net/oov2wcw.css"
+          rel="stylesheet"
+        ></link>
+      </Helmet>
       <div className="flex h-screen">
         <section
-          className="flex-shrink-0 h-screen pt-10 overflow-y-auto bg-gray-100"
+          className="flex-shrink-0 h-screen pt-10 overflow-y-auto"
           style={{ width: navWidth }}
         >
           <SideNav />

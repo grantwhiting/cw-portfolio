@@ -7,8 +7,7 @@ const SideNavItem = ({ to, children }) => {
   return (
     <li>
       <Link
-        className="flex items-center h-5 p-5 text-left rounded-sm px5-5 p- text-5 hover:text-gray-70"
-        activeClassName="text-blue-40 bg-blue-30 bg-opacity-5 hover:text-blue-40 hover:bg-blue-30 hover:bg-opacity-5"
+        className="flex items-center h-5 p-5 px-5 text-left rounded-sm text-5 hover:text-gray-70"
         to={to}
       >
         {children}
