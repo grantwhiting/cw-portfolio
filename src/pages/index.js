@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
-import { navigate, useLocation, globalHistory } from "@reach/router";
-import { graphql } from "gatsby";
+import { useLocation, globalHistory } from "@reach/router";
 const mockData = [
   { filter: 0 },
   { filter: 0 },
@@ -35,20 +34,20 @@ function randomIntFromInterval(min, max) {
 }
 
 const Index = () => {
-  const loc = useLocation();
+  const location = useLocation();
   const [currentFilter, setCurrentFilter] = useState("all");
 
   useEffect(() => {
     return globalHistory.listen(({ location: { search } }) => {
       setCurrentFilter(search.substr(1).replace("filter=", ""));
     });
-  }, [loc]);
+  }, [location]);
 
   const showItem = (item) =>
     parseInt(currentFilter, 10) === item.filter || currentFilter === "all";
 
   return (
-    <Layout>
+    <Layout location={location}>
       <div className="masonry-columns">
         {mockData.map(
           (item, i) =>

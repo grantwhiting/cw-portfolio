@@ -4,12 +4,11 @@ module.exports = {
   theme: {
     extend: {},
     aspectRatio: {
-      // defaults to {}
       none: 0,
-      square: [1, 1], // or 1 / 1, or simply 1
-      "16/9": [16, 9], // or 16 / 9
-      "4/3": [4, 3], // or 4 / 3
-      "21/9": [21, 9], // or 21 / 9
+      square: [1, 1],
+      "16/9": [16, 9],
+      "4/3": [4, 3],
+      "21/9": [21, 9],
     },
     fontFamily: {
       CenturyGothic: ["century-gothic", "sans-serif"],
