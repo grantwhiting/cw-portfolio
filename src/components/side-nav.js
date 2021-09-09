@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
-const SideNavItem = ({ to, children }) => {
+const SideNavItem = ({ to, children, isActive }) => {
   return (
     <li>
       <Link
-        className="flex items-center h-5 p-5 px-5 text-xl text-left rounded-sm text-5 hover:text-gray-70"
+        className={`flex items-center h-5 p-5 px-5 text-xl text-left rounded-sm text-5 hover:text-gray-70 ${
+          isActive && "active-nav-item"
+        }`}
         to={to}
       >
         {children}
@@ -19,11 +21,18 @@ const SideNav = ({ location, navItems, children }) => {
   const { pathname, search } = location;
   const showFilters = pathname === "/";
 
-  const filterNavItems = Array.from(Array(4)).map((_, i) => (
-    <SideNavItem key={i} to={`?filter=${i}`}>
-      Item {i}
-    </SideNavItem>
-  ));
+  const filterNavItems = Array.from(Array(4)).map((_, i) => {
+    console.log(search);
+    return (
+      <SideNavItem
+        key={i}
+        to={`?filter=${i}`}
+        isActive={search === `?filter=${i}`}
+      >
+        Item {i}
+      </SideNavItem>
+    );
+  });
 
   return (
     <nav>

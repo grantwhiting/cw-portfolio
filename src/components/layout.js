@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import SideNav from "../components/side-nav";
-import { useLocation } from "@reach/router";
 
 const Layout = ({ location, children }) => {
   const navWidth = "230px";
@@ -27,7 +26,6 @@ const Layout = ({ location, children }) => {
           <main className="flex-grow w-full px-4 pb-12 m-auto overflow-y-auto max-w-screen-desk">
             {children}
           </main>
-          {/* <Footer /> */}
         </section>
       </div>
     </>
