@@ -7,7 +7,6 @@ const SideNavItem = ({ to, children }) => {
     <li>
       <Link
         className="flex items-center h-5 p-5 px-5 text-xl text-left rounded-sm text-5 hover:text-gray-70"
-        activeClassName="text-blue-50"
         to={to}
       >
         {children}
@@ -17,7 +16,8 @@ const SideNavItem = ({ to, children }) => {
 };
 
 const SideNav = ({ location, navItems, children }) => {
-  const showFilters = location.pathname === "/";
+  const { pathname, search } = location;
+  const showFilters = pathname === "/";
 
   const filterNavItems = Array.from(Array(4)).map((_, i) => (
     <SideNavItem key={i} to={`?filter=${i}`}>
