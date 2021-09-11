@@ -32,6 +32,12 @@ const SideNav = ({ location, navItems, children }) => {
     );
   });
 
+  const filterNavItems = Array.from(Array(4)).map((_, i) => (
+    <SideNavItem key={i} to={`?filter=${i}`}>
+      Item {i}
+    </SideNavItem>
+  ));
+
   return (
     <nav>
       <ul className="space-y-1">
