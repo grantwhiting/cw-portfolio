@@ -4,14 +4,13 @@ import { Link } from "gatsby";
 
 const SideNavItem = ({ to, children, isActive }) => {
   return (
-    <li>
+    <li className={`relative nav-item ${isActive && "nav-item--active"}`}>
       <Link
-        className={`flex items-center h-5 p-5 px-5 text-xl text-left rounded-sm text-5 hover:text-gray-70 ${
-          isActive && "active-nav-item"
-        }`}
+        className="flex items-center h-5 p-5 px-5 text-xl text-left rounded-sm text-5 hover:text-gray-70"
         to={to}
       >
-        {children}
+        <span className="nav-item-text">{children}</span>
+        <span className="nav-item-arrow"></span>
       </Link>
     </li>
   );
@@ -22,7 +21,6 @@ const SideNav = ({ location, navItems, children }) => {
   const showFilters = pathname === "/";
 
   const filterNavItems = Array.from(Array(4)).map((_, i) => {
-    console.log(search);
     return (
       <SideNavItem
         key={i}
