@@ -9,23 +9,25 @@ const Index = ({ data }) => {
   const [currentFilter, setCurrentFilter] = useState("all");
   const { allWpProject } = data;
 
-  console.log(allWpProject.nodes);
-
   useEffect(() => {
     return globalHistory.listen(({ location: { search } }) => {
       setCurrentFilter(getFilterParam(search));
     });
   }, [location]);
 
-  const showItem = (item) =>
-    parseInt(currentFilter, 10) === item.filter || currentFilter === "all";
+  const getCategoryNames = (categories) =>
+    categories.map((category) => category.name);
+
+  const showProject = (categories) =>
+    getCategoryNames(categories).includes(decodeURI(currentFilter)) ||
+    currentFilter === "all";
 
   return (
     <Layout location={location}>
       <div className="masonry-columns">
         {allWpProject.nodes.map(
           (project) =>
-            showItem(project) && (
+            showProject(project.categories.nodes) && (
               <Link
                 to={project.uri}
                 key={project.id}
@@ -53,6 +55,11 @@ export const query = graphql`
         featuredImage {
           node {
             guid
+          }
+        }
+        categories {
+          nodes {
+            name
           }
         }
       }

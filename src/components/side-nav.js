@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
 
 const SideNavItem = ({ to, children, isActive }) => {
   return (
@@ -20,17 +20,32 @@ const SideNav = ({ location, navItems, children }) => {
   const { pathname, search } = location;
   const showFilters = pathname === "/";
 
-  const filterNavItems = Array.from(Array(4)).map((_, i) => {
-    return (
-      <SideNavItem
-        key={i}
-        to={`?filter=${i}`}
-        isActive={search === `?filter=${i}`}
-      >
-        Item {i}
-      </SideNavItem>
-    );
-  });
+  const {
+    allWpCategory: { nodes: categories },
+  } = useStaticQuery(graphql`
+    query CategoriesQuery {
+      allWpCategory {
+        nodes {
+          id
+          name
+        }
+      }
+    }
+  `);
+
+  const filteredCategories = categories.filter(
+    (category) => category.name !== "Uncategorized"
+  );
+
+  const filterNavItems = filteredCategories.map((category) => (
+    <SideNavItem
+      key={category.id}
+      to={`?filter=${category.name}`}
+      isActive={decodeURI(search) === `?filter=${category.name}`}
+    >
+      {category.name}
+    </SideNavItem>
+  ));
 
   return (
     <nav>

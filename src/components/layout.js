@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import SideNav from "../components/side-nav";
-import { useLocation } from "@reach/router";
 
 const Layout = ({ location, children }) => {
   const navWidth = "230px";
