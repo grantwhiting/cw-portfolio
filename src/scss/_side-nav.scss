@@ -1,0 +1,36 @@
+.nav-item {
+  &-text {
+    z-index: 1;
+    position: absolute;
+  }
+
+  &-arrow {
+    z-index: 0;
+    transition: width 0.2s ease;
+    width: 0;
+    position: absolute;
+    height: 100%;
+    width: 0;
+    background-color: lightblue;
+    margin-left: -20px;
+  }
+
+  &--active &-arrow {
+    width: calc(100% - 20px);
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 100%;
+      height: 0;
+      width: 0;
+      border-style: solid;
+      border-color: lightblue;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-right-color: transparent;
+      border-width: 20px;
+    }
+  }
+}
