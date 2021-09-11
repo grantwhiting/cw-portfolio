@@ -17,6 +17,7 @@
   "dependencies": {
     "autoprefixer": "^10.3.3",
     "gatsby": "^3.11.1",
+    "gatsby-plugin-client-side-redirect": "^1.1.0",
     "gatsby-plugin-image": "^1.12.0",
     "gatsby-plugin-postcss": "^4.12.0",
     "gatsby-plugin-react-helmet": "^4.12.0",

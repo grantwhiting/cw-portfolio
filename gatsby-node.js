@@ -1,8 +1,14 @@
 exports.createPages = async ({
-  actions: { createPage },
+  actions: { createPage, createRedirect },
   graphql,
   reporter,
 }) => {
+  createRedirect({
+    fromPath: "/about",
+    toPath: "/test",
+    isPermanent: true,
+  });
+
   const result = await graphql(`
     {
       wpPage(id: { eq: "cG9zdDo1Nw==" }) {

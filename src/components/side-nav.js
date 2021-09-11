@@ -37,14 +37,14 @@ const SideNav = ({ location, navItems, children }) => {
       <ul className="space-y-1">
         {showFilters ? (
           <>
-            {filterNavItems}
             <SideNavItem to="?filter=all" isActive={search === "?filter=all"}>
               All
             </SideNavItem>
+            {filterNavItems}
             <SideNavItem to="/about">About</SideNavItem>
           </>
         ) : (
-          <SideNavItem to="/">Home</SideNavItem>
+          <SideNavItem to="/?filter=all">Home</SideNavItem>
         )}
       </ul>
     </nav>

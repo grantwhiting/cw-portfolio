@@ -35,5 +35,6 @@ module.exports = {
       },
       __key: "images",
     },
+    "gatsby-plugin-client-side-redirect",
   ],
 };
