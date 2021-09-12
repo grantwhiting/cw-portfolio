@@ -3,15 +3,23 @@ import Layout from "../components/layout";
 import { useLocation, globalHistory } from "@reach/router";
 import { getRandomIntFromInterval, getFilterParam } from "../functions/helpers";
 import { graphql, Link } from "gatsby";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const Index = ({ data }) => {
   const location = useLocation();
-  const [currentFilter, setCurrentFilter] = useState("all");
+  const [storedValue, setLocalStorageValue] = useLocalStorage(
+    "currentFilter",
+    "all"
+  );
   const { allWpProject } = data;
 
   useEffect(() => {
     return globalHistory.listen(({ location: { search } }) => {
-      setCurrentFilter(getFilterParam(search));
+      if (search) {
+        setLocalStorageValue(getFilterParam(search));
+      } else {
+        setLocalStorageValue("all");
+      }
     });
   }, [location]);
 
@@ -19,8 +27,8 @@ const Index = ({ data }) => {
     categories.map((category) => category.name);
 
   const showProject = (categories) =>
-    getCategoryNames(categories).includes(decodeURI(currentFilter)) ||
-    currentFilter === "all";
+    getCategoryNames(categories).includes(decodeURI(storedValue)) ||
+    storedValue === "all";
 
   return (
     <Layout location={location}>
