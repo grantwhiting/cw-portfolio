@@ -4,11 +4,8 @@ import { useLocation } from "@reach/router";
 import Layout from "../components/layout";
 
 const About = ({ pageContext }) => {
-  console.log(pageContext);
   const location = useLocation();
   const { content } = pageContext;
-
-  console.log(location);
 
   return (
     <Layout location={location}>
