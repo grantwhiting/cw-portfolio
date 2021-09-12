@@ -8,6 +8,8 @@ const About = ({ pageContext }) => {
   const location = useLocation();
   const { content } = pageContext;
 
+  console.log(location);
+
   return (
     <Layout location={location}>
       <div dangerouslySetInnerHTML={{ __html: content }}></div>

@@ -14,6 +14,7 @@ const Index = ({ data }) => {
   const { allWpProject } = data;
 
   useEffect(() => {
+    console.log(location);
     return globalHistory.listen(({ location: { search } }) => {
       if (search) {
         setLocalStorageValue(getFilterParam(search));

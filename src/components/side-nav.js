@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import { getFilterParam } from "../functions/helpers";
 
 const SideNavItem = ({ to, children, isActive }) => {
   return (
@@ -18,7 +19,6 @@ const SideNavItem = ({ to, children, isActive }) => {
 
 const SideNav = ({ location, navItems, children }) => {
   const { pathname, search } = location;
-  const showFilters = pathname === "/";
 
   const {
     allWpCategory: { nodes: categories },
@@ -40,8 +40,8 @@ const SideNav = ({ location, navItems, children }) => {
   const filterNavItems = filteredCategories.map((category) => (
     <SideNavItem
       key={category.id}
-      to={`?filter=${category.name}`}
-      isActive={decodeURI(search) === `?filter=${category.name}`}
+      to={`/?filter=${category.name}`}
+      isActive={decodeURI(getFilterParam(search)) === category.name}
     >
       {category.name}
     </SideNavItem>
@@ -50,17 +50,19 @@ const SideNav = ({ location, navItems, children }) => {
   return (
     <nav>
       <ul className="space-y-1">
-        {showFilters ? (
-          <>
-            <SideNavItem to="?filter=all" isActive={search === "?filter=all"}>
-              All
-            </SideNavItem>
-            {filterNavItems}
-            <SideNavItem to="/about">About</SideNavItem>
-          </>
-        ) : (
+        <>
+          <SideNavItem
+            to="?filter=all"
+            isActive={getFilterParam(search) === "all"}
+          >
+            All Projects
+          </SideNavItem>
+          {filterNavItems}
+          <SideNavItem to="/about" isActive={pathname === "/about"}>
+            About
+          </SideNavItem>
           <SideNavItem to="/?filter=all">Home</SideNavItem>
-        )}
+        </>
       </ul>
     </nav>
   );
