@@ -3,12 +3,6 @@ exports.createPages = async ({
   graphql,
   reporter,
 }) => {
-  createRedirect({
-    fromPath: "/about",
-    toPath: "/test",
-    isPermanent: true,
-  });
-
   // Pages
   const aboutPage = await graphql(`
     {
