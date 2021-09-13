@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Layout from "../components/layout";
 import { useLocation, globalHistory } from "@reach/router";
 import { getRandomIntFromInterval, getFilterParam } from "../functions/helpers";
 import { graphql, Link } from "gatsby";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { PropTypes } from "prop-types";
 
 const Index = ({ data }) => {
   const location = useLocation();
@@ -14,7 +15,6 @@ const Index = ({ data }) => {
   const { allWpProject } = data;
 
   useEffect(() => {
-    console.log(location);
     return globalHistory.listen(({ location: { search } }) => {
       if (search) {
         setLocalStorageValue(getFilterParam(search));
@@ -75,5 +75,27 @@ export const query = graphql`
     }
   }
 `;
+
+Index.propTypes = {
+  allWpProject: PropTypes.shape({
+    nodes: PropTypes.arrayOf([
+      PropTypes.shape({
+        categories: PropTypes.arrayOf([
+          PropTypes.shape({
+            nodes: PropTypes.arrayOf([
+              PropTypes.shape({
+                name: PropTypes.string,
+              }),
+            ]),
+          }),
+        ]),
+        featuredImage: PropTypes.string,
+        id: PropTypes.string,
+        title: PropTypes.string,
+        uri: PropTypes.string,
+      }),
+    ]),
+  }),
+};
 
 export default Index;
