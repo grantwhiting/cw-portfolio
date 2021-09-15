@@ -8,7 +8,7 @@ const Project = ({ pageContext }) => {
   const { content } = pageContext;
 
   return (
-    <Layout location={location}>
+    <Layout>
       <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </Layout>
   );

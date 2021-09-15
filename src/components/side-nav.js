@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import { getFilterParam } from "../functions/helpers";
 
-const SideNavItem = ({ to, children, isActive }) => {
+const SideNavItem = ({ to, children }) => {
   return (
-    <li className={`relative nav-item ${isActive && "nav-item--active"}`}>
+    <li className="relative nav-item">
       <Link
         className="flex items-center h-5 p-5 px-5 text-xl text-left rounded-sm text-5 hover:text-gray-70"
+        activeClassName="nav-item--active"
         to={to}
       >
         <span className="nav-item-text">{children}</span>
@@ -17,9 +17,7 @@ const SideNavItem = ({ to, children, isActive }) => {
   );
 };
 
-const SideNav = ({ location, navItems, children }) => {
-  const { pathname, search } = location;
-
+const SideNav = () => {
   const {
     allWpCategory: { nodes: categories },
   } = useStaticQuery(graphql`
@@ -28,6 +26,7 @@ const SideNav = ({ location, navItems, children }) => {
         nodes {
           id
           name
+          slug
         }
       }
     }
@@ -38,11 +37,7 @@ const SideNav = ({ location, navItems, children }) => {
   );
 
   const filterNavItems = filteredCategories.map((category) => (
-    <SideNavItem
-      key={category.id}
-      to={`/?filter=${category.name}`}
-      isActive={decodeURI(getFilterParam(search)) === category.name}
-    >
+    <SideNavItem key={category.id} to={`/${category.slug}`}>
       {category.name}
     </SideNavItem>
   ));
@@ -51,17 +46,9 @@ const SideNav = ({ location, navItems, children }) => {
     <nav>
       <ul className="space-y-1">
         <>
-          <SideNavItem
-            to="?filter=all"
-            isActive={getFilterParam(search) === "all"}
-          >
-            All Projects
-          </SideNavItem>
+          <SideNavItem to="/">All Projects</SideNavItem>
           {filterNavItems}
-          <SideNavItem to="/about" isActive={pathname === "/about"}>
-            About
-          </SideNavItem>
-          <SideNavItem to="/?filter=all">Home</SideNavItem>
+          <SideNavItem to="/about">About</SideNavItem>
         </>
       </ul>
     </nav>

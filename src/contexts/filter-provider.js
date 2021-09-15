@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const FilterContext = createContext({});
 
-export const useFilter = useContext(FilterContext);
+export const useFilter = () => useContext(FilterContext);
 
 const FilterProvider = ({ children }) => {
   const [storedValue, setLocalStorageValue] = useLocalStorage(
@@ -28,3 +28,5 @@ FilterProvider.propTypes = PropTypes.oneOfType([
   PropTypes.arrayOf(PropTypes.node),
   PropTypes.node,
 ]).isRequired;
+
+export default FilterProvider;

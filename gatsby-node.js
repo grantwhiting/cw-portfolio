@@ -62,4 +62,43 @@ exports.createPages = async ({
       context: project,
     });
   });
+
+  // Categories
+  const categories = await graphql(`
+    {
+      allWpCategory {
+        nodes {
+          name
+          id
+          slug
+          projects {
+            nodes {
+              title
+              featuredImage {
+                node {
+                  guid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (categories.errors) {
+    reporter.error("There was a problem fetching allWpCategory");
+  }
+
+  const filteredProjectsPageTemplate = require.resolve(
+    "./src/templates/filtered-projects.js"
+  );
+
+  categories.data.allWpCategory.nodes.forEach((category) => {
+    createPage({
+      path: category.slug,
+      component: filteredProjectsPageTemplate,
+      context: category,
+    });
+  });
 };

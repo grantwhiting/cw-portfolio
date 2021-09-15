@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
-import SideNav from "../components/side-nav";
+import SideNav from "./side-nav";
+import FilterProvider from "../contexts/filter-provider";
 
-const Layout = ({ location, children }) => {
+const Layout = ({ children }) => {
   const navWidth = "230px";
 
   return (
-    <>
+    <FilterProvider>
       <Helmet>
         <title>Courtney Whiting's Portfolio</title>
         <link
@@ -20,7 +21,7 @@ const Layout = ({ location, children }) => {
           className="flex-shrink-0 h-screen pt-10 overflow-y-auto"
           style={{ width: navWidth }}
         >
-          <SideNav location={location} />
+          <SideNav />
         </section>
         <section className="flex flex-col flex-grow">
           <main className="flex-grow w-full px-4 pb-12 m-auto overflow-y-auto max-w-screen-desk">
@@ -28,7 +29,7 @@ const Layout = ({ location, children }) => {
           </main>
         </section>
       </div>
-    </>
+    </FilterProvider>
   );
 };
 
