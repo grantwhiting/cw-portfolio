@@ -1,33 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "../components/layout";
-import { useLocation, globalHistory } from "@reach/router";
-import { getRandomIntFromInterval, getFilterParam } from "../functions/helpers";
-import { graphql, Link } from "gatsby";
-import { useFilter } from "../contexts/filter-provider";
+import { useLocation } from "@reach/router";
+import { graphql } from "gatsby";
 import { PropTypes } from "prop-types";
 import ProjectsGrid from "../components/projects-grid";
 
 const Index = ({ data }) => {
   const location = useLocation();
-  const { currentFilter, setCurrentFilter } = useFilter();
   const { allWpProject } = data;
-
-  // useEffect(() => {
-  //   return globalHistory.listen(({ location: { search } }) => {
-  //     if (search) {
-  //       setCurrentFilter(getFilterParam(search));
-  //     } else {
-  //       setCurrentFilter("all");
-  //     }
-  //   });
-  // }, [location]);
-
-  const getCategoryNames = (categories) =>
-    categories.map((category) => category.name);
-
-  const showProject = (categories) =>
-    getCategoryNames(categories).includes(decodeURI(currentFilter)) ||
-    currentFilter === "all";
 
   return (
     <Layout location={location}>
