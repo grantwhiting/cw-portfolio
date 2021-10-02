@@ -49,10 +49,10 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "template",
-        path: `${__dirname}/src/template/`,
+        name: "templates",
+        path: `${__dirname}/src/templates/`,
       },
-      __key: "template",
+      __key: "templates",
     },
     "gatsby-plugin-client-side-redirect",
   ],
