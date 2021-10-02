@@ -46,6 +46,14 @@ module.exports = {
       },
       __key: "pages",
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "template",
+        path: `${__dirname}/src/template/`,
+      },
+      __key: "template",
+    },
     "gatsby-plugin-client-side-redirect",
   ],
 };
