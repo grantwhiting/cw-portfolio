@@ -1,5 +1,5 @@
-// const url = "https://caw-portfolio.000webhostapp.com/graphql";
-const url = "http://localhost:8880/wordpress/graphql";
+const url = "https://caw-portfolio.000webhostapp.com/graphql";
+// const url = "http://localhost:8880/wordpress/graphql";
 
 module.exports = {
   siteMetadata: {
