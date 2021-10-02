@@ -36,13 +36,13 @@ exports.createPages = async ({
           title
           uri
           content
-          galleryImages {
-            guid
-          }
           featuredImage {
             node {
               guid
             }
+          }
+          galleryImages {
+            guid
           }
         }
       }
@@ -73,6 +73,8 @@ exports.createPages = async ({
           slug
           projects {
             nodes {
+              id
+              uri
               title
               featuredImage {
                 node {

@@ -3,11 +3,15 @@ import Layout from "../components/layout";
 import ProjectsGrid from "../components/projects-grid";
 import PropTypes from "prop-types";
 
-const FilteredProjects = ({ pageContext }) => (
-  <Layout>
-    <ProjectsGrid projects={pageContext.projects}></ProjectsGrid>
-  </Layout>
-);
+const FilteredProjects = ({ pageContext, transitionStatus, entry, exit }) => {
+  console.log(transitionStatus, entry, exit);
+
+  return (
+    <Layout>
+      <ProjectsGrid projects={pageContext.projects}></ProjectsGrid>
+    </Layout>
+  );
+};
 
 FilteredProjects.propTypes = {
   pageContext: PropTypes.shape({
