@@ -16,7 +16,6 @@
   }
 
   &--active &-arrow {
-    width: calc(100% - 20px);
 
     &::after {
       content: "";

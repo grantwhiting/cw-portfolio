@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import { motion } from "framer-motion";
+import { useLocation } from "@reach/router";
 
 const SideNavItem = ({ to, children }) => {
+  const location = useLocation();
   return (
     <li className="relative nav-item">
       <Link
@@ -11,7 +14,12 @@ const SideNavItem = ({ to, children }) => {
         to={to}
       >
         <span className="nav-item-text">{children}</span>
-        <span className="nav-item-arrow"></span>
+        <motion.span
+          animate={{
+            width: location.pathname === to ? "calc(100% - 20px)" : "0",
+          }}
+          className="nav-item-arrow"
+        ></motion.span>
       </Link>
     </li>
   );
