@@ -6,7 +6,7 @@ exports.createPages = async ({
   // Pages
   const aboutPage = await graphql(`
     {
-      wpPage(id: { eq: "cG9zdDo1Nw==" }) {
+      wpPage(title: { eq: "About" }) {
         id
         uri
         content

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 import { getRandomIntFromInterval } from "../functions/helpers";
 import PropTypes from "prop-types";
-import { motion } from "framer-motion";
 
 const ProjectsGrid = ({ projects }) => {
   const { nodes } = projects;
