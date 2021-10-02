@@ -1,3 +1,6 @@
+// const url = "https://caw-portfolio.000webhostapp.com/graphql";
+const url = "http://localhost:8880/wordpress/graphql";
+
 module.exports = {
   siteMetadata: {
     siteUrl: "https://www.courtneywhiting.com",
@@ -7,8 +10,7 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: "https://caw-portfolio.000webhostapp.com/graphql",
-        protocol: "https",
+        url: url,
         // hostingWPCOM: false,
         // useACF: true,
         includedRoutes: [
