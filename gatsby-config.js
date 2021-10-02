@@ -7,7 +7,9 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: "http://localhost:8880/wordpress/graphql",
+        url:
+          process.env.WPGRAPHQL_URL ||
+          "http://localhost:8880/wordpress/graphql",
         protocol: "https",
         // hostingWPCOM: false,
         // useACF: true,
