@@ -7,7 +7,7 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: "https://cwportfoliomaster.gatsbyjs.io/graphql",
+        url: "https://caw-portfolio.000webhostapp.com/graphql",
         protocol: "https",
         // hostingWPCOM: false,
         // useACF: true,
