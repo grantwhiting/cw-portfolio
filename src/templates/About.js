@@ -4,22 +4,7 @@ import { useLocation } from "@reach/router";
 import Layout from "../components/layout";
 
 const About = ({ pageContext }) => {
-  const location = useLocation();
-  const { content } = pageContext;
-
-  return (
-    <Layout location={location}>
-      <div dangerouslySetInnerHTML={{ __html: content }}></div>
-    </Layout>
-  );
-};
-
-About.propTypes = {
-  pageContext: PropTypes.shape({
-    id: PropTypes.string,
-    uri: PropTypes.string,
-    content: PropTypes.string,
-  }),
+  return <div>snowman</div>;
 };
 
 export default About;
