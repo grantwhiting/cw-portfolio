@@ -35,7 +35,7 @@ exports.createPages = async ({
   }
 
   const filteredProjectsPageTemplate = path.resolve(
-    "./src/templates/filtered-projects.js"
+    "./src/templates/filteredProjectsPage.js"
   );
 
   categories.data.allWpCategory.nodes.forEach((category) => {
@@ -72,7 +72,7 @@ exports.createPages = async ({
     reporter.error("There was a problem fetching allWpProjects");
   }
 
-  const projectPageTemplate = path.resolve("./src/templates/project.js");
+  const projectPageTemplate = path.resolve("./src/templates/projectPage.js");
 
   projects.data.allWpProject.nodes.forEach((project) => {
     createPage({
@@ -97,7 +97,7 @@ exports.createPages = async ({
     reporter.error("There was an error fetching the About Page");
   }
 
-  const aboutPageTemplate = path.resolve("./src/templates/aboutMe.js");
+  const aboutPageTemplate = path.resolve("./src/templates/aboutPage.js");
   const { wpPage } = aboutPage.data;
 
   createPage({
