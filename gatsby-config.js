@@ -1,4 +1,4 @@
-const url = "courtney-whiting-portfolio.loca";
+const url = "courtney-whiting-portfolio.local";
 
 module.exports = {
   siteMetadata: {
