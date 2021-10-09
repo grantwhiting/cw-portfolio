@@ -14,8 +14,6 @@ const About = ({ pageContext }) => {
   );
 };
 
-export default About;
-
 About.propTypes = {
   pageContext: PropTypes.shape({
     id: PropTypes.string,
@@ -23,3 +21,5 @@ About.propTypes = {
     content: PropTypes.string,
   }),
 };
+
+export default About;

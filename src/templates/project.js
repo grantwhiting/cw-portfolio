@@ -12,10 +12,10 @@ const Project = ({ pageContext }) => {
   );
 };
 
-export default Project;
-
 Project.propTypes = {
   pageContext: PropTypes.shape({
     content: PropTypes.string,
   }),
 };
+
+export default Project;
