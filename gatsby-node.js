@@ -5,6 +5,47 @@ exports.createPages = async ({
   graphql,
   reporter,
 }) => {
+  // Categories
+  const categories = await graphql(`
+    {
+      allWpCategory {
+        nodes {
+          name
+          id
+          slug
+          projects {
+            nodes {
+              id
+              uri
+              title
+              featuredImage {
+                node {
+                  guid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (categories.errors) {
+    reporter.error("There was a problem fetching allWpCategory");
+  }
+
+  const filteredProjectsPageTemplate = path.resolve(
+    "./src/templates/filtered-projects.js"
+  );
+
+  categories.data.allWpCategory.nodes.forEach((category) => {
+    createPage({
+      path: category.slug,
+      component: filteredProjectsPageTemplate,
+      context: category,
+    });
+  });
+
   // Pages
   const aboutPage = await graphql(`
     {
@@ -20,7 +61,7 @@ exports.createPages = async ({
     reporter.error("There was an error fetching the About Page");
   }
 
-  const aboutTemplate = path.resolve(`./src/templates/about.js`);
+  const aboutTemplate = path.resolve("./src/templates/about.js");
   const { wpPage } = aboutPage.data;
 
   createPage({
@@ -55,54 +96,13 @@ exports.createPages = async ({
     reporter.error("There was a problem fetching allWpProjects");
   }
 
-  const projectPageTemplate = path.resolve(`./src/templates/project.js`);
+  const projectPageTemplate = path.resolve("./src/templates/project.js");
 
   projects.data.allWpProject.nodes.forEach((project) => {
     createPage({
       path: project.uri,
       component: projectPageTemplate,
       context: project,
-    });
-  });
-
-  // Categories
-  const categories = await graphql(`
-    {
-      allWpCategory {
-        nodes {
-          name
-          id
-          slug
-          projects {
-            nodes {
-              id
-              uri
-              title
-              featuredImage {
-                node {
-                  guid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  if (categories.errors) {
-    reporter.error("There was a problem fetching allWpCategory");
-  }
-
-  const filteredProjectsPageTemplate = path.resolve(
-    `./src/templates/filtered-projects.js`
-  );
-
-  categories.data.allWpCategory.nodes.forEach((category) => {
-    createPage({
-      path: category.slug,
-      component: filteredProjectsPageTemplate,
-      context: category,
     });
   });
 };
