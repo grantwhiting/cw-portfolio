@@ -100,9 +100,9 @@ exports.createPages = async ({
   const aboutTemplate = path.resolve("./src/templates/about.js");
   const { wpPage } = aboutPage.data;
 
-  createPage({
-    path: wpPage.uri,
-    component: aboutTemplate,
-    context: wpPage,
-  });
+  // createPage({
+  //   path: wpPage.uri,
+  //   component: aboutTemplate,
+  //   context: wpPage,
+  // });
 };
