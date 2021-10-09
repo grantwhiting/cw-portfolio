@@ -1,4 +1,4 @@
-const url = "courtneywhiting.local/graphql";
+const url = "https://courtney-whiting-portfolio.flywheelsites.com/graphql";
 
 module.exports = {
   siteMetadata: {
@@ -9,10 +9,16 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        baseUrl: url,
-        protocol: "http",
+        url: url,
+        protocol: "https",
         hostingWPCOM: false,
         useACF: false,
+        auth: {
+          htaccess: {
+            username: "flywheel",
+            password: "learned-ribbon",
+          },
+        },
       },
     },
     "gatsby-plugin-sass",
