@@ -1,4 +1,4 @@
-const url = "courtney-whiting-portfolio.local/graphql";
+const url = "http://courtney-whiting-portfolio.local/graphql";
 
 module.exports = {
   siteMetadata: {
