@@ -97,12 +97,12 @@ exports.createPages = async ({
     reporter.error("There was an error fetching the About Page");
   }
 
-  const aboutTemplate = path.resolve("./src/templates/about.js");
+  const aboutPageTemplate = path.resolve("./src/templates/about.js");
   const { wpPage } = aboutPage.data;
 
-  // createPage({
-  //   path: wpPage.uri,
-  //   component: aboutTemplate,
-  //   context: wpPage,
-  // });
+  createPage({
+    path: wpPage.uri,
+    component: aboutPageTemplate,
+    context: wpPage,
+  });
 };
