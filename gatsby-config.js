@@ -1,4 +1,4 @@
-const url = "http://courtney-whiting-portfolio.local/graphql";
+const url = "courtney-whiting-portfolio.loca";
 
 module.exports = {
   siteMetadata: {
@@ -10,17 +10,9 @@ module.exports = {
       resolve: "gatsby-source-wordpress",
       options: {
         url: url,
-        // hostingWPCOM: false,
-        // useACF: true,
-        // includedRoutes: [
-        //   //"**/categories",
-        //   "**/posts",
-        //   "**/pages",
-        //   // "**/media",
-        //   // "**/tags",
-        //   // "**/taxonomies",
-        //   // "**/users",
-        // ],
+        protocol: "http",
+        hostingWPCOM: false,
+        useACF: true,
       },
     },
     "gatsby-plugin-sass",
