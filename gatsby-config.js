@@ -1,4 +1,4 @@
-const url = "http://courtney-whiting-portfolio.local/graphql";
+const url = "http://courtney-whiting-portfolio.flywheelsites.com/graphql";
 
 module.exports = {
   siteMetadata: {
