@@ -46,30 +46,6 @@ exports.createPages = async ({
     });
   });
 
-  // Pages
-  const aboutPage = await graphql(`
-    {
-      wpPage(title: { eq: "About" }) {
-        id
-        uri
-        content
-      }
-    }
-  `);
-
-  if (aboutPage.errors) {
-    reporter.error("There was an error fetching the About Page");
-  }
-
-  const aboutTemplate = path.resolve("./src/templates/about.js");
-  const { wpPage } = aboutPage.data;
-
-  createPage({
-    path: wpPage.uri,
-    component: aboutTemplate,
-    context: wpPage,
-  });
-
   // Projects
   const projects = await graphql(`
     {
@@ -104,5 +80,29 @@ exports.createPages = async ({
       component: projectPageTemplate,
       context: project,
     });
+  });
+
+  // Pages
+  const aboutPage = await graphql(`
+    {
+      wpPage(title: { eq: "About" }) {
+        id
+        uri
+        content
+      }
+    }
+  `);
+
+  if (aboutPage.errors) {
+    reporter.error("There was an error fetching the About Page");
+  }
+
+  const aboutTemplate = path.resolve("./src/templates/about.js");
+  const { wpPage } = aboutPage.data;
+
+  createPage({
+    path: wpPage.uri,
+    component: aboutTemplate,
+    context: wpPage,
   });
 };
