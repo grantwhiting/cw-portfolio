@@ -9,10 +9,10 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: url,
+        baseUrl: url,
         protocol: "http",
         hostingWPCOM: false,
-        useACF: true,
+        useACF: false,
       },
     },
     "gatsby-plugin-sass",
