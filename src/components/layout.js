@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
-import SideNav from "./side-nav";
+import SideNav from "./sideNav";
 import FilterProvider from "../contexts/filter-provider";
 
 const Layout = ({ children }) => {

@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import { useLocation } from "@reach/router";
 import { graphql } from "gatsby";
 import { PropTypes } from "prop-types";
-import ProjectsGrid from "../components/projects-grid";
+import ProjectsGrid from "../components/projectsGrid";
 
 const Index = ({ data }) => {
   const location = useLocation();

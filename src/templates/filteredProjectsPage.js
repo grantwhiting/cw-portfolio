@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
-import ProjectsGrid from "../components/projects-grid";
+import ProjectsGrid from "../components/projectsGrid";
 import PropTypes from "prop-types";
 
 const FilteredProjects = ({ pageContext, transitionStatus, entry, exit }) => {
