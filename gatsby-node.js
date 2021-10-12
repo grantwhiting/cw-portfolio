@@ -1,7 +1,7 @@
 const path = require(`path`);
 
 exports.createPages = async ({
-  actions: { createPage, createRedirect },
+  actions: { createPage },
   graphql,
   reporter,
 }) => {

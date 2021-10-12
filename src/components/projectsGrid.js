@@ -1,13 +1,11 @@
 import React from "react";
-import { getRandomIntFromInterval } from "../functions/helpers";
 import PropTypes from "prop-types";
 import FullScreenDiv, { states } from "./fullScreenDiv";
 import { motion, AnimatePresence } from "framer-motion";
+import Carousel from "./carousel";
 
 const ProjectsGrid = ({ projects }) => {
   const { nodes } = projects;
-
-  console.log(projects);
 
   return (
     <div className="grid grid-cols-3 gap-4 masonry-columns">
@@ -51,6 +49,7 @@ const ProjectsGrid = ({ projects }) => {
                 )}
                 {active && (
                   <AnimatePresence>
+                    <Carousel images={project.galleryImages}></Carousel>
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
