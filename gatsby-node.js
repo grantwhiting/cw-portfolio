@@ -18,10 +18,14 @@ exports.createPages = async ({
               id
               uri
               title
+              content
               featuredImage {
                 node {
                   guid
                 }
+              }
+              galleryImages {
+                guid
               }
             }
           }
@@ -43,44 +47,6 @@ exports.createPages = async ({
       path: category.slug,
       component: filteredProjectsPageTemplate,
       context: category,
-    });
-  });
-
-  // Projects
-  const projects = await graphql(`
-    {
-      allWpProject {
-        nodes {
-          id
-          title
-          uri
-          content
-          featuredImage {
-            node {
-              guid
-            }
-          }
-          galleryImages {
-            guid
-          }
-        }
-      }
-    }
-  `);
-
-  if (projects.errors) {
-    reporter.error("There was a problem fetching allWpProjects");
-  }
-
-  const projectPageTemplate = path.resolve(
-    `${__dirname}/src/templates/projectPage.js`
-  );
-
-  projects.data.allWpProject.nodes.forEach((project) => {
-    createPage({
-      path: project.uri,
-      component: projectPageTemplate,
-      context: project,
     });
   });
 

@@ -23,10 +23,14 @@ export const query = graphql`
         id
         title
         uri
+        content
         featuredImage {
           node {
             guid
           }
+        }
+        galleryImages {
+          guid
         }
         categories {
           nodes {
@@ -42,6 +46,20 @@ Index.propTypes = {
   allWpProject: PropTypes.shape({
     nodes: PropTypes.arrayOf([
       PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        uri: PropTypes.string,
+        content: PropTypes.string,
+        featuredImage: PropTypes.shape({
+          node: PropTypes.shape({
+            guid: PropTypes.string,
+          }),
+        }),
+        galleryImages: PropTypes.arrayOf(
+          PropTypes.shape({
+            guid: PropTypes.string,
+          })
+        ),
         categories: PropTypes.arrayOf([
           PropTypes.shape({
             nodes: PropTypes.arrayOf([
@@ -51,13 +69,9 @@ Index.propTypes = {
             ]),
           }),
         ]),
-        featuredImage: PropTypes.string,
-        id: PropTypes.string,
-        title: PropTypes.string,
-        uri: PropTypes.string,
       }),
     ]),
-  }),
+  }).isRequired,
 };
 
 export default Index;

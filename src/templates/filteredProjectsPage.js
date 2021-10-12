@@ -3,9 +3,8 @@ import Layout from "../components/layout";
 import ProjectsGrid from "../components/projectsGrid";
 import PropTypes from "prop-types";
 
-const FilteredProjects = ({ pageContext, transitionStatus, entry, exit }) => {
-  console.log(transitionStatus, entry, exit);
-
+const FilteredProjects = ({ pageContext }) => {
+  console.log("FilteredProjects", pageContext);
   return (
     <Layout>
       <ProjectsGrid projects={pageContext.projects}></ProjectsGrid>
@@ -15,18 +14,30 @@ const FilteredProjects = ({ pageContext, transitionStatus, entry, exit }) => {
 
 FilteredProjects.propTypes = {
   pageContext: PropTypes.shape({
-    id: PropTypes.string,
     name: PropTypes.string,
-    projects: PropTypes.shape({
-      nodes: PropTypes.arrayOf([
-        PropTypes.shape({
-          featuredImage: PropTypes.string,
-          title: PropTypes.string,
-        }),
-      ]),
-    }),
+    id: PropTypes.string,
     slug: PropTypes.string,
-  }),
+    projects: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          uri: PropTypes.string,
+          title: PropTypes.string,
+          content: PropTypes.string,
+          featuredImage: PropTypes.shape({
+            node: PropTypes.shape({
+              guid: PropTypes.string,
+            }),
+          }),
+          galleryImages: PropTypes.arrayOf(
+            PropTypes.shape({
+              guid: PropTypes.string,
+            })
+          ),
+        })
+      ),
+    }),
+  }).isRequired,
 };
 
 export default FilteredProjects;
