@@ -45,35 +45,37 @@ const Carousel = ({ images }) => {
   };
 
   return (
-    <div className="relative">
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.img
-          key={page}
-          src={imageLinks[imageIndex]}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 },
-          }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
+    <>
+      <div className="relative w-4/5 mx-auto h-96">
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.img
+            key={page}
+            src={imageLinks[imageIndex]}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 },
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
 
-            if (swipe < -swipeConfidenceThreshold) {
-              paginate(e, 1);
-            } else if (swipe > swipeConfidenceThreshold) {
-              paginate(e, -1);
-            }
-          }}
-          classNme="absolute"
-        />
-      </AnimatePresence>
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(e, 1);
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(e, -1);
+              }
+            }}
+            className="absolute object-cover w-full h-full"
+          />
+        </AnimatePresence>
+      </div>
       <button
         className="absolute -translate-y-1/2 top-1/2"
         onClick={(e) => paginate(e, 1)}
@@ -86,7 +88,7 @@ const Carousel = ({ images }) => {
       >
         {"‣"}
       </button>
-    </div>
+    </>
   );
 };
 
