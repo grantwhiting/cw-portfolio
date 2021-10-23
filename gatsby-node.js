@@ -50,6 +50,44 @@ exports.createPages = async ({
     });
   });
 
+  // Projects
+  const projects = await graphql(`
+    {
+      allWpProject {
+        nodes {
+          id
+          title
+          uri
+          content
+          featuredImage {
+            node {
+              guid
+            }
+          }
+          galleryImages {
+            guid
+          }
+        }
+      }
+    }
+  `);
+
+  if (projects.errors) {
+    reporter.error("There was a problem fetching allWpProjects");
+  }
+
+  const projectPageTemplate = path.resolve(
+    `${__dirname}/src/templates/projectPage.js`
+  );
+
+  projects.data.allWpProject.nodes.forEach((project) => {
+    createPage({
+      path: project.uri,
+      component: projectPageTemplate,
+      context: project,
+    });
+  });
+
   // Pages
   const aboutPage = await graphql(`
     {
