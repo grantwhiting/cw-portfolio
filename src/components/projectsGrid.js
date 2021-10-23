@@ -5,6 +5,8 @@ import ExpandableImage from "./expandableImage";
 const ProjectsGrid = ({ projects }) => {
   const { nodes } = projects;
 
+  console.log(nodes);
+
   return (
     <div className="grid grid-cols-3 gap-4 masonry-columns">
       {nodes.map((project) => (

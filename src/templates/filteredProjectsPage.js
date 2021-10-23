@@ -3,16 +3,13 @@ import Layout from "../components/layout";
 import ProjectsGrid from "../components/projectsGrid";
 import PropTypes from "prop-types";
 
-const FilteredProjects = ({ pageContext }) => {
-  console.log("FilteredProjects", pageContext);
-  return (
-    <Layout>
-      <ProjectsGrid projects={pageContext.projects}></ProjectsGrid>
-    </Layout>
-  );
-};
+const FilteredProjectsPage = ({ pageContext }) => (
+  <Layout>
+    <ProjectsGrid projects={pageContext.projects}></ProjectsGrid>
+  </Layout>
+);
 
-FilteredProjects.propTypes = {
+FilteredProjectsPage.propTypes = {
   pageContext: PropTypes.shape({
     name: PropTypes.string,
     id: PropTypes.string,
@@ -40,4 +37,4 @@ FilteredProjects.propTypes = {
   }).isRequired,
 };
 
-export default FilteredProjects;
+export default FilteredProjectsPage;

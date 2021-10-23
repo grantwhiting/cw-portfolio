@@ -13,6 +13,7 @@
 
   add_action( 'graphql_register_types', function() {
 
+
     register_graphql_object_type(
       'GalleryImage',
       [
@@ -25,20 +26,36 @@
         ],
       ]
     );
+	  
+	  $field_config = [
+      'type' => [ 'list_of' => 'GalleryImage' ],
+      'resolve' => function() {
+        $images = pods('project', [ 'limit' => -1 ])->field( 'gallery' );
+        return empty( $images ) ? null : $images;
+      }
+    ];
 
     register_graphql_field(
       'Project',
       'galleryImages',
-      [
-        'description' => __( 'Return images' ),
-        'type' => [ 'list_of' => 'galleryImage' ],
-        'resolve' => function() {
-          $images = pods('project', [ 'limit' => -1 ])->field( 'gallery' );
-          return empty( $images ) ? null : $images;
-        }
-      ]
+		  $field_config
     );
-  } );
+  });
+
+  add_action( 'graphql_register_types', function() {
+
+    $field_config = [
+      'type' => 'Boolean',
+      'resolve' => function($root) {
+        return get_post_field('grid_image', $root->ID);
+      }
+    ];
+    
+    register_graphql_field(
+      'MediaItem',
+      'gridImage',
+      $field_config);
+  });
 
   // add featured image support
   add_theme_support('post-thumbnails', array(
