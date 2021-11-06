@@ -1,4 +1,5 @@
 const url = "https://courtney-whiting-portfolio.flywheelsites.com/graphql";
+// const url = "http://courtneywhiting.local/graphql";
 
 module.exports = {
   siteMetadata: {
@@ -54,3 +55,6 @@ module.exports = {
     "gatsby-plugin-client-side-redirect",
   ],
 };
+
+// https://www.youtube.com/embed/rp89vj3WV-U?rel=0&color=white&origin=https://www.ramseysolutions.com&enablejsapi=1
+// https://www.youtube.com/embed/rp89vj3WV-U?rel=0&color=white&origin=https://www.ramseysolutions.com

@@ -3,7 +3,6 @@ import FullScreenDiv, { states } from "./fullScreenDiv";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ExpandableImage = ({ image, title }) => {
-  console.log(image);
   return (
     <FullScreenDiv>
       {({ open, close, status }) => {

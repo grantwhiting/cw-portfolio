@@ -4,7 +4,6 @@ import ProjectsGrid from "../components/projectsGrid";
 import PropTypes from "prop-types";
 
 const ProjectPage = ({ pageContext }) => {
-  console.log("Project", pageContext);
   return (
     <Layout>
       <ProjectsGrid projects={pageContext.projects}></ProjectsGrid>
