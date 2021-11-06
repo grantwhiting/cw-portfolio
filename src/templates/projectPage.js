@@ -1,12 +1,12 @@
 import React from "react";
 import Layout from "../components/layout";
-import ProjectsGrid from "../components/projectsGrid";
+import ImageGrid from "../components/imageGrid";
 import PropTypes from "prop-types";
 
 const ProjectPage = ({ pageContext }) => {
   return (
     <Layout>
-      <ProjectsGrid projects={pageContext.projects}></ProjectsGrid>
+      <ImageGrid projects={pageContext.projects}></ImageGrid>
     </Layout>
   );
 };

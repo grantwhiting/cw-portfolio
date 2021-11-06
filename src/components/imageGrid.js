@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ExpandableImage from "./expandableImage";
 
-const ProjectsGrid = ({ projects }) => {
+const ImageGrid = ({ projects }) => {
   const { nodes } = projects;
 
   return (
@@ -18,7 +18,7 @@ const ProjectsGrid = ({ projects }) => {
   );
 };
 
-ProjectsGrid.propTypes = {
+ImageGrid.propTypes = {
   projects: PropTypes.shape({
     nodes: PropTypes.arrayOf(
       PropTypes.shape({
@@ -50,4 +50,4 @@ ProjectsGrid.propTypes = {
   }).isRequired,
 };
 
-export default ProjectsGrid;
+export default ImageGrid;
