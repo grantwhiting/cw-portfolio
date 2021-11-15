@@ -7,9 +7,7 @@ import ImageGrid from "../components/imageGrid";
 
 const Index = ({ data }) => {
   const location = useLocation();
-  const { allWpProject, allWpMediaItem } = data;
-
-  console.log(allWpMediaItem);
+  const { allWpProject } = data;
 
   return (
     <Layout location={location}>
@@ -41,19 +39,13 @@ export const query = graphql`
         }
       }
     }
-    allWpMediaItem {
-      nodes {
-        title
-        gridImage
-      }
-    }
   }
 `;
 
 Index.propTypes = {
   data: PropTypes.shape({
     allWpProject: PropTypes.shape({
-      nodes: PropTypes.arrayOf([
+      nodes: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string,
           title: PropTypes.string,
@@ -61,33 +53,20 @@ Index.propTypes = {
           content: PropTypes.string,
           featuredImage: PropTypes.shape({
             node: PropTypes.shape({
-              guid: PropTypes.string,
+              guide: PropTypes.string,
             }),
           }),
           galleryImages: PropTypes.arrayOf(
             PropTypes.shape({
-              guid: PropTypes.string,
-            })
-          ),
-          categories: PropTypes.arrayOf([
-            PropTypes.shape({
-              nodes: PropTypes.arrayOf([
+              nodes: PropTypes.arrayOf(
                 PropTypes.shape({
                   name: PropTypes.string,
-                }),
-              ]),
-            }),
-          ]),
-        }),
-      ]),
-    }),
-    allWpMediaItem: PropTypes.shape({
-      nodes: PropTypes.arrayOf([
-        PropTypes.shape({
-          title: PropTypes.string,
-          gridImage: PropTypes.boolean,
-        }),
-      ]),
+                })
+              ),
+            })
+          ),
+        })
+      ),
     }),
   }),
 };

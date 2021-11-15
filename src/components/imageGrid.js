@@ -5,15 +5,25 @@ import ExpandableImage from "./expandableImage";
 const ImageGrid = ({ projects }) => {
   const { nodes } = projects;
 
+  console.log(nodes);
+
   return (
     <div className="grid grid-cols-3 gap-4 masonry-columns">
-      {nodes.map((project) => (
-        <ExpandableImage
-          key={project.id}
-          image={project.featuredImage.node.guid}
-          title={project.title}
-        ></ExpandableImage>
-      ))}
+      {nodes.map((item) =>
+        item.gridImage ? (
+          <ExpandableImage
+            key={item.id}
+            image={item.guid}
+            title={item.title}
+          ></ExpandableImage>
+        ) : (
+          <ExpandableImage
+            key={item.id}
+            image={item.featuredImage?.node.guid}
+            title={item.title}
+          ></ExpandableImage>
+        )
+      )}
     </div>
   );
 };
@@ -28,26 +38,21 @@ ImageGrid.propTypes = {
         content: PropTypes.string,
         featuredImage: PropTypes.shape({
           node: PropTypes.shape({
-            guid: PropTypes.string,
+            guide: PropTypes.string,
           }),
         }),
         galleryImages: PropTypes.arrayOf(
           PropTypes.shape({
-            guid: PropTypes.string,
-          })
-        ),
-        categories: PropTypes.arrayOf([
-          PropTypes.shape({
-            nodes: PropTypes.arrayOf([
+            nodes: PropTypes.arrayOf(
               PropTypes.shape({
                 name: PropTypes.string,
-              }),
-            ]),
-          }),
-        ]),
+              })
+            ),
+          })
+        ),
       })
     ),
-  }).isRequired,
+  }),
 };
 
 export default ImageGrid;

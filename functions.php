@@ -27,7 +27,7 @@
       ]
     );
 	  
-	  $field_config = [
+	  $gallery_image_field_config = [
       'type' => [ 'list_of' => 'GalleryImage' ],
       'resolve' => function() {
         $images = pods('project', [ 'limit' => -1 ])->field( 'gallery' );
@@ -38,29 +38,51 @@
     register_graphql_field(
       'Project',
       'galleryImages',
-		  $field_config
+		  $gallery_image_field_config
+    );
+
+    register_graphql_object_type(
+      'HasProjectPage',
+      [
+        'description' => __( 'Has Project Page' ),
+        'type'  => 'Boolean',
+      ]
+    );
+
+    $has_page_field_config = [
+      'type' => 'Boolean',
+      'resolve' => function() {
+        $has_project_page_field = pods('project', [ 'limit' => -1 ])->field( 'has_project_page' );
+        return $has_project_page_field;
+      }
+    ];
+
+    register_graphql_field(
+      'Project',
+      'hasProjectPage',
+      $has_page_field_config
     );
   });
 
-  add_action( 'graphql_register_types', function() {
+  // add_action( 'graphql_register_types', function() {
 
-    $field_config = [
-      'type' => 'Boolean',
-      'resolve' => function($root) {
-        return get_post_field('grid_image', $root->ID);
-      }
-    ];
+  //   $field_config = [
+  //     'type' => 'Boolean',
+  //     'resolve' => function($root) {
+  //       return get_post_field('grid_image', $root->ID);
+  //     }
+  //   ];
     
-    register_graphql_field(
-      'MediaItem',
-      'gridImage',
-      $field_config);
-  });
+  //   register_graphql_field(
+  //     'MediaItem',
+  //     'gridImage',
+  //     $field_config);
+  // });
 
   // add featured image support
   add_theme_support('post-thumbnails', array(
     'post',
     'page',
-    'projects',
+    'project',
   ));
 ?>
