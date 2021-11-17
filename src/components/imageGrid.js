@@ -10,12 +10,19 @@ const ImageGrid = ({ projects }) => {
   return (
     <div className="grid grid-cols-3 gap-4 masonry-columns">
       {nodes.map((item) =>
-        item.gridImage ? (
-          <ExpandableImage
+        item.hasProjectPage ? (
+          <a
+            href={item.uri}
             key={item.id}
-            image={item.guid}
-            title={item.title}
-          ></ExpandableImage>
+            className="relative block w-full mb-3 mr-3 cursor-pointer aspect-ratio-square bg-gray-50 break-inside-avoid"
+          >
+            <div
+              className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-center bg-no-repeat bg-cover rounded-xl"
+              style={{
+                backgroundImage: `url(${item.featuredImage?.node.guid})`,
+              }}
+            ></div>
+          </a>
         ) : (
           <ExpandableImage
             key={item.id}
@@ -50,6 +57,14 @@ ImageGrid.propTypes = {
             ),
           })
         ),
+        hasProjectPage: PropTypes.bool,
+        categories: PropTypes.shape({
+          nodes: PropTypes.arrayOf(
+            PropTypes.shape({
+              name: PropTypes.string,
+            })
+          ),
+        }),
       })
     ),
   }),

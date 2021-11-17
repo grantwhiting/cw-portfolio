@@ -13,19 +13,15 @@
 
   add_action( 'graphql_register_types', function() {
 
-
-    register_graphql_object_type(
-      'GalleryImage',
-      [
-        'description' => __( 'Gallery Image' ),
-        'fields'  => [
-          'guid'  => [
-            'type'  => 'String',
-            'description' => 'image guid'
-          ]
-        ],
-      ]
-    );
+    register_graphql_object_type( 'GalleryImage', [
+      'description' => __( 'A gallery image from a project' ),
+      'fields'  => [
+        'guid'  => [
+          'type'  => 'String',
+          'description' => __( 'The guid string value for the image' )
+        ]
+      ],
+    ] );
 	  
 	  $gallery_image_field_config = [
       'type' => [ 'list_of' => 'GalleryImage' ],
@@ -38,31 +34,22 @@
     register_graphql_field(
       'Project',
       'galleryImages',
-		  $gallery_image_field_config
-    );
-
-    register_graphql_object_type(
-      'HasProjectPage',
-      [
-        'description' => __( 'Has Project Page' ),
-        'type'  => 'Boolean',
-      ]
-    );
+		  $gallery_image_field_config);
 
     $has_page_field_config = [
       'type' => 'Boolean',
       'resolve' => function() {
-        $has_project_page_field = pods('project', [ 'limit' => -1 ])->field( 'has_project_page' );
-        return $has_project_page_field;
+        $hasPage = pods('project', [ 'limit' => -1 ])->field( 'has_project_page' );
+        return $hasPage;
       }
     ];
 
     register_graphql_field(
       'Project',
       'hasProjectPage',
-      $has_page_field_config
-    );
-  });
+      $has_page_field_config);
+
+  } );
 
   // add_action( 'graphql_register_types', function() {
 
@@ -80,9 +67,11 @@
   // });
 
   // add featured image support
-  add_theme_support('post-thumbnails', array(
-    'post',
-    'page',
-    'project',
-  ));
+  add_theme_support(
+    'post-thumbnails',
+    array(
+      'post',
+      'page',
+      'project',
+    ));
 ?>

@@ -37,6 +37,7 @@ export const query = graphql`
             name
           }
         }
+        hasProjectPage
       }
     }
   }
@@ -65,6 +66,14 @@ Index.propTypes = {
               ),
             })
           ),
+          hasProjectPage: PropTypes.bool,
+          categories: PropTypes.shape({
+            nodes: PropTypes.arrayOf(
+              PropTypes.shape({
+                name: PropTypes.string,
+              })
+            ),
+          }),
         })
       ),
     }),
