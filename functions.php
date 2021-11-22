@@ -36,18 +36,18 @@
       'galleryImages',
 		  $gallery_image_field_config);
 
-    $has_page_field_config = [
+    $page_field_config = [
       'type' => 'Boolean',
       'resolve' => function() {
         $hasPage = pods('project', [ 'limit' => -1 ])->field( 'has_project_page' );
         return $hasPage;
       }
     ];
-
+  
     register_graphql_field(
       'Project',
       'hasProjectPage',
-      $has_page_field_config);
+      $page_field_config);
 
   } );
 

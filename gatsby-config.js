@@ -11,9 +11,6 @@ module.exports = {
       resolve: "gatsby-source-wordpress",
       options: {
         url: url,
-        protocol: "https",
-        hostingWPCOM: false,
-        useACF: false,
         auth: {
           htaccess: {
             username: "flywheel",
