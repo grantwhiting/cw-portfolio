@@ -2,12 +2,16 @@ import React from "react";
 import Layout from "../components/layout";
 import ImageGrid from "../components/imageGrid";
 import PropTypes from "prop-types";
+import { useLocation } from "@reach/router";
 
-const FilteredProjectsPage = ({ pageContext }) => (
-  <Layout>
-    <ImageGrid projects={pageContext.projects}></ImageGrid>
-  </Layout>
-);
+const FilteredProjectsPage = ({ pageContext }) => {
+  const location = useLocation();
+  return (
+    <Layout location={location}>
+      <ImageGrid projects={pageContext.projects}></ImageGrid>
+    </Layout>
+  );
+};
 
 FilteredProjectsPage.propTypes = {
   pageContext: PropTypes.shape({

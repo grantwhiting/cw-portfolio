@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
           <SideNav />
         </section>
         <section className="flex flex-col flex-grow">
-          <main className="flex-grow w-full px-4 pb-12 m-auto overflow-y-auto max-w-screen-desk">
+          <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
             {children}
           </main>
         </section>
