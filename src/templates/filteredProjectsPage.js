@@ -6,9 +6,11 @@ import { useLocation } from "@reach/router";
 
 const FilteredProjectsPage = ({ pageContext }) => {
   const location = useLocation();
+  const { projects } = pageContext;
+
   return (
     <Layout location={location}>
-      <ImageGrid projects={pageContext.projects}></ImageGrid>
+      <ImageGrid projects={projects}></ImageGrid>
     </Layout>
   );
 };
@@ -22,19 +24,31 @@ FilteredProjectsPage.propTypes = {
       nodes: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string,
-          uri: PropTypes.string,
           title: PropTypes.string,
+          uri: PropTypes.string,
           content: PropTypes.string,
+          hasProjectPage: PropTypes.bool,
           featuredImage: PropTypes.shape({
             node: PropTypes.shape({
-              guid: PropTypes.string,
+              guide: PropTypes.string,
             }),
           }),
           galleryImages: PropTypes.arrayOf(
             PropTypes.shape({
-              guid: PropTypes.string,
+              nodes: PropTypes.arrayOf(
+                PropTypes.shape({
+                  name: PropTypes.string,
+                })
+              ),
             })
           ),
+          categories: PropTypes.shape({
+            nodes: PropTypes.arrayOf(
+              PropTypes.shape({
+                name: PropTypes.string,
+              })
+            ),
+          }),
         })
       ),
     }),

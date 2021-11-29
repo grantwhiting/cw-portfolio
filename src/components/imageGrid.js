@@ -5,12 +5,10 @@ import ExpandableImage from "./expandableImage";
 const ImageGrid = ({ projects }) => {
   const { nodes } = projects;
 
-  console.log(nodes);
-
   return (
     <div className="grid grid-cols-3 gap-4 masonry-columns">
       {nodes.map((item) =>
-        item.hasProjectPage ? (
+        !!item.hasProjectPage ? (
           <a
             href={item.uri}
             key={item.id}

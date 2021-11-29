@@ -16,9 +16,10 @@ exports.createPages = async ({
           projects {
             nodes {
               id
-              uri
               title
+              uri
               content
+              hasProjectPage
               featuredImage {
                 node {
                   guid
@@ -26,6 +27,11 @@ exports.createPages = async ({
               }
               galleryImages {
                 guid
+              }
+              categories {
+                nodes {
+                  name
+                }
               }
             }
           }
