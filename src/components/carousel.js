@@ -33,6 +33,7 @@ const swipePower = (offset, velocity) => {
 
 const Carousel = ({ images, className }) => {
   const [[page, direction], setPage] = useState([0, 0]);
+  const classNames = `${className} relative`;
 
   const imageLinks = images.map((node) => node.guid);
 
@@ -45,7 +46,7 @@ const Carousel = ({ images, className }) => {
   };
 
   return (
-    <div className={className}>
+    <div className={classNames}>
       <div className="relative w-4/5 mx-auto" style={{ minHeight: "800px" }}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.img
@@ -83,13 +84,15 @@ const Carousel = ({ images, className }) => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-12 h-12"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
           <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z"
-            clipRule="evenodd"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
           />
         </svg>
       </button>
@@ -100,13 +103,15 @@ const Carousel = ({ images, className }) => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-12 h-12"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
           <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-            clipRule="evenodd"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
       </button>

@@ -6,12 +6,17 @@ import Carousel from "../components/carousel";
 
 const ProjectPage = ({ pageContext }) => {
   const location = useLocation();
-  const { content, title, featuredImage, galleryImages } = pageContext;
+  const { content, title, galleryImages } = pageContext;
   return (
     <Layout location={location}>
       <h1 className="text-4xl text-center">{title}</h1>
       <Carousel images={galleryImages} className="mt-9"></Carousel>
-      <div dangerouslySetInnerHTML={{ __html: content }} className="mt-9"></div>
+      <div
+        id="content"
+        dangerouslySetInnerHTML={{ __html: content }}
+        className="mx-auto mt-6"
+        style={{ maxWidth: "1000px" }}
+      ></div>
     </Layout>
   );
 };
