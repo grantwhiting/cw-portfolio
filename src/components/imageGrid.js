@@ -6,7 +6,7 @@ const ImageGrid = ({ projects }) => {
   const { nodes } = projects;
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 masonry-columns">
+    <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3 masonry-columns">
       {nodes.map((item) =>
         !!item.hasProjectPage ? (
           <a

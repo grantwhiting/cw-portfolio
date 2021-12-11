@@ -40,8 +40,6 @@ const SideNav = ({ onToggleMobileNav }) => {
     }
   `);
 
-  const handleMobileNavToggle = () => onToggleMobileNav;
-
   const filteredCategories = categories.filter(
     (category) => category.name !== "Uncategorized"
   );

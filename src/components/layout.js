@@ -12,7 +12,6 @@ const Layout = ({ children }) => {
   const navWidth = "230px";
 
   const handleMobileNavToggle = () => {
-    console.log("hello");
     setNavIsOpen(!navIsOpen);
   };
 
@@ -29,10 +28,13 @@ const Layout = ({ children }) => {
           rel="stylesheet"
         ></link>
       </Helmet>
-      <button onClick={handleMobileNavToggle} className="md:hidden">
+      <button
+        onClick={handleMobileNavToggle}
+        className="fixed z-20 flex items-center justify-center bg-white border border-black rounded-full left-3 top-3 h-11 w-11 md:hidden"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6"
+          className="w-8 h-8"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -50,7 +52,8 @@ const Layout = ({ children }) => {
           <motion.section
             key={0}
             animate={{ x: navIsOpen ? 0 : "-100%" }}
-            className="fixed top-0 z-20 flex-shrink-0 h-screen overflow-y-auto transform bg-white shadow md:static"
+            transition={{ bounce: 0.25 }}
+            className="fixed top-0 z-20 flex-shrink-0 h-screen overflow-y-auto transform bg-white md:static"
             style={{ width: navWidth }}
           >
             <SideNav onToggleMobileNav={handleMobileNavToggle} />
