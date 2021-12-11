@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
       </Helmet>
       <button
         onClick={handleMobileNavToggle}
-        className="fixed z-20 flex items-center justify-center bg-white border border-black rounded-full left-3 top-3 h-11 w-11 md:hidden"
+        className="fixed z-20 flex items-center justify-center bg-white border-2 border-black rounded-full left-3 top-3 h-11 w-11 md:hidden"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
