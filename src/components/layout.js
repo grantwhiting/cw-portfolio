@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import SideNav from "./sideNav";
 import FilterProvider from "../contexts/filter-provider";
+import { motion, AnimatePresence } from "framer-motion";
+import useMatchMedia from "../hooks/useMatchMedia";
 
 const Layout = ({ children }) => {
+  const [navIsOpen, setNavIsOpen] = useState(true);
+  const isMobileScreen = useMatchMedia("(max-width: 768px)");
   const navWidth = "230px";
+
+  const handleMobileNavToggle = () => {
+    console.log("hello");
+    setNavIsOpen(!navIsOpen);
+  };
+
+  useEffect(() => {
+    setNavIsOpen(!isMobileScreen);
+  }, [isMobileScreen]);
 
   return (
     <FilterProvider>
@@ -16,18 +29,38 @@ const Layout = ({ children }) => {
           rel="stylesheet"
         ></link>
       </Helmet>
-      <div className="flex h-screen">
-        <section
-          className="flex-shrink-0 h-screen pt-10 overflow-y-auto"
-          style={{ width: navWidth }}
+      <button onClick={handleMobileNavToggle} className="md:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <SideNav />
-        </section>
-        <section className="flex flex-col flex-grow">
-          <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
-            {children}
-          </main>
-        </section>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+      <div className="flex h-screen">
+        <AnimatePresence>
+          <motion.section
+            key={0}
+            animate={{ x: navIsOpen ? 0 : "-100%" }}
+            className="fixed top-0 z-20 flex-shrink-0 h-screen overflow-y-auto transform bg-white shadow md:static"
+            style={{ width: navWidth }}
+          >
+            <SideNav onToggleMobileNav={handleMobileNavToggle} />
+          </motion.section>
+          <section key={1} className="flex flex-col flex-grow">
+            <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
+              {children}
+            </main>
+          </section>
+        </AnimatePresence>
       </div>
     </FilterProvider>
   );

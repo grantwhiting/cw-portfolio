@@ -25,7 +25,7 @@ const SideNavItem = ({ to, children }) => {
   );
 };
 
-const SideNav = () => {
+const SideNav = ({ onToggleMobileNav }) => {
   const {
     allWpCategory: { nodes: categories },
   } = useStaticQuery(graphql`
@@ -40,6 +40,8 @@ const SideNav = () => {
     }
   `);
 
+  const handleMobileNavToggle = () => onToggleMobileNav;
+
   const filteredCategories = categories.filter(
     (category) => category.name !== "Uncategorized"
   );
@@ -52,7 +54,26 @@ const SideNav = () => {
 
   return (
     <nav>
-      <ul className="space-y-1">
+      <button
+        onClick={onToggleMobileNav}
+        className="flex items-center justify-center w-10 h-10 mt-3 ml-auto md:hidden top-1/2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
+          />
+        </svg>
+      </button>
+      <ul className="pt-3 space-y-1 md:pt-10">
         <>
           <SideNavItem to="/">All Projects</SideNavItem>
           {filterNavItems}

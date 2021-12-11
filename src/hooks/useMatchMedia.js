@@ -10,11 +10,14 @@ function useMatchMedia(query) {
       setMatches(media.matches);
     }
 
-    const listener = () => setMatches(media.matches);
+    const listener = () => {
+      console.log(media.matches);
+      setMatches(media.matches);
+    };
 
-    media.addEventListener(listener);
+    media.addEventListener("change", listener);
 
-    return () => media.removeEventListener(listener);
+    return () => media.removeEventListener("change", listener);
   }, [matches, query]);
 
   return matches;
