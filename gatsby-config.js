@@ -1,5 +1,6 @@
-const url = "https://courtney-whiting-portfolio.flywheelsites.com/graphql";
-// const url = "http://courtneywhiting.local/graphql";
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -10,7 +11,7 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: url,
+        url: process.env.GQL_URL,
         auth: {
           htaccess: {
             username: "flywheel",
