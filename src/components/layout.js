@@ -48,34 +48,33 @@ const Layout = ({ children }) => {
         </svg>
       </button>
       <div className="flex h-screen">
-        <AnimatePresence>
-          <motion.section
-            key={0}
-            animate={{ x: navIsOpen ? 0 : "-100%" }}
-            transition={{ bounce: 0.55 }}
-            className="fixed top-0 z-20 flex-shrink-0 h-screen overflow-y-auto transform bg-white md:static"
-            style={{ width: navWidth }}
-          >
-            <SideNav onToggleMobileNav={handleMobileNavToggle} />
-          </motion.section>
-          <section key={1} className="flex flex-col flex-grow">
-            <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
-              {children}
-            </main>
-            <AnimatePresence>
-              {navIsOpen && isMobileScreen && (
-                <motion.div
-                  onClick={() => setNavIsOpen(false)}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: navIsOpen ? 0.7 : 0 }}
-                  transition={{ bounce: 0.55 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute top-0 bottom-0 left-0 right-0 z-10 bg-black cursor-pointer"
-                ></motion.div>
-              )}
-            </AnimatePresence>
-          </section>
-        </AnimatePresence>
+        <motion.section
+          key={0}
+          initial={{ x: !isMobileScreen && navIsOpen ? 0 : "-100%" }}
+          animate={{ x: navIsOpen ? 0 : "-100%" }}
+          transition={{ bounce: 0.55 }}
+          className="fixed top-0 z-20 flex-shrink-0 h-screen overflow-y-auto transform bg-white md:static md:-translate-x-0 transform-none"
+          style={{ width: navWidth }}
+        >
+          <SideNav onToggleMobileNav={handleMobileNavToggle} />
+        </motion.section>
+        <section key={1} className="flex flex-col flex-grow">
+          <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
+            {children}
+          </main>
+          <AnimatePresence>
+            {navIsOpen && isMobileScreen && (
+              <motion.div
+                onClick={() => setNavIsOpen(false)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: navIsOpen ? 0.7 : 0 }}
+                transition={{ bounce: 0.55 }}
+                exit={{ opacity: 0 }}
+                className="absolute top-0 bottom-0 left-0 right-0 z-10 bg-black cursor-pointer"
+              ></motion.div>
+            )}
+          </AnimatePresence>
+        </section>
       </div>
     </FilterProvider>
   );
