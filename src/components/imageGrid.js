@@ -8,7 +8,7 @@ const ImageGrid = ({ projects }) => {
   return (
     <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3 masonry-columns">
       {nodes.map((item) =>
-        !!item.hasProjectPage ? (
+        item.hasProjectPage ? (
           <a
             href={item.uri}
             key={item.id}
@@ -20,6 +20,9 @@ const ImageGrid = ({ projects }) => {
                 backgroundImage: `url(${item.featuredImage?.node.guid})`,
               }}
             ></div>
+            <span className="absolute z-10 w-full text-xl font-bold text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+              {item.title}
+            </span>
           </a>
         ) : (
           <ExpandableImage
