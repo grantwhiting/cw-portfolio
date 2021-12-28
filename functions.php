@@ -25,8 +25,13 @@
 	  
 	  $gallery_image_field_config = [
       'type' => [ 'list_of' => 'GalleryImage' ],
-      'resolve' => function() {
-        $images = pods('project', [ 'limit' => -1 ])->field( 'gallery' );
+      'resolve' => function( $proj ) {
+        $whereClause = "`t`.`ID` = " . strval( $proj->ID ) . "";
+        $params = array(
+          'limit' => -1,
+          'where' => $whereClause
+        );
+        $images = pods('project', $params)->field( 'gallery' );
         return empty( $images ) ? null : $images;
       }
     ];
@@ -34,12 +39,18 @@
     register_graphql_field(
       'Project',
       'galleryImages',
-		  $gallery_image_field_config);
+		  $gallery_image_field_config
+    );
 
     $page_field_config = [
       'type' => 'Boolean',
-      'resolve' => function() {
-        $hasPage = pods('project', [ 'limit' => -1 ])->field( 'has_project_page' );
+      'resolve' => function( $proj ) {
+        $whereClause = "`t`.`ID` = " . strval( $proj->ID ) . "";
+        $params = array(
+          'limit' => -1,
+          'where' => $whereClause
+        );
+        $hasPage = pods('project', $params)->field( 'has_project_page' );
         return $hasPage;
       }
     ];
@@ -47,7 +58,8 @@
     register_graphql_field(
       'Project',
       'hasProjectPage',
-      $page_field_config);
+      $page_field_config
+    );
 
   } );
 
