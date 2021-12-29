@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { motion } from "framer-motion";
 import { useLocation } from "@reach/router";
+import { ModalProvider } from "../contexts/modal-provider";
+import ContactFormCTA from "./contactFormCTA";
 
 const SideNavItem = ({ to, children }) => {
   const location = useLocation();
@@ -78,6 +80,9 @@ const SideNav = ({ onToggleMobileNav }) => {
           <SideNavItem to="/about">About</SideNavItem>
         </>
       </ul>
+      <ModalProvider>
+        <ContactFormCTA>Contact</ContactFormCTA>
+      </ModalProvider>
     </nav>
   );
 };
