@@ -11,11 +11,13 @@ const SideNavItem = ({ to, children }) => {
   return (
     <li className="relative nav-item">
       <Link
-        className="flex items-center h-5 p-5 px-5 text-xl text-left rounded-sm text-5 hover:text-gray-70"
+        className="flex items-center h-5 p-5 px-5 text-xl text-left rounded-sm text-5"
         activeClassName="nav-item--active"
         to={to}
       >
-        <span className="nav-item-text">{children}</span>
+        <span className="transition-colors nav-item-text hover:text-gray-500">
+          {children}
+        </span>
         <motion.span
           animate={{
             width: location.pathname === to ? "calc(100% - 20px)" : "0",

@@ -5,7 +5,10 @@ import ContactForm from "./contactForm";
 const ContactFormCTA = ({ children }) => {
   const { handleModal } = useContext(ModalContext);
   return (
-    <button onClick={(event) => handleModal(event, <ContactForm />)}>
+    <button
+      onClick={(event) => handleModal(event, <ContactForm />)}
+      className="flex items-center w-full h-5 p-5 px-5 text-xl text-left transition-colors rounded-sm text-5 hover:text-gray-500"
+    >
       {children}
     </button>
   );

@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./side-nav";
-
 * {
   font-family: "century-gothic", "sans-serif";
 }
@@ -35,3 +33,5 @@
     break-inside: avoid;
   }
 }
+
+@import "./side-nav";
