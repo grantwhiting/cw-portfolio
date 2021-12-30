@@ -9,10 +9,12 @@ export default () => {
       e.preventDefault();
     }
 
-    setModal(!modal);
+    if (e.target.id !== "modalContent") {
+      setModal(!modal);
 
-    if (content) {
-      setModalContent(content);
+      if (content) {
+        setModalContent(content);
+      }
     }
   };
 
