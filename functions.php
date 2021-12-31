@@ -13,6 +13,7 @@
 
   add_action( 'graphql_register_types', function() {
 
+    // register gallery field
     register_graphql_object_type( 'GalleryImage', [
       'description' => __( 'A gallery image from a project' ),
       'fields'  => [
@@ -42,7 +43,8 @@
 		  $gallery_image_field_config
     );
 
-    $page_field_config = [
+    // register project field
+    $project_field_config = [
       'type' => 'Boolean',
       'resolve' => function( $proj ) {
         $whereClause = "`t`.`ID` = " . strval( $proj->ID ) . "";
@@ -58,25 +60,123 @@
     register_graphql_field(
       'Project',
       'hasProjectPage',
-      $page_field_config
+      $project_field_config
     );
 
+    // register nonce field
+    $nonce_field_config = [
+      'type' => 'String',
+      'resolve' => function () {
+        return wp_create_nonce( 'wp_rest' );
+      }
+    ];
+
+    register_graphql_field(
+      'RootQuery',
+      'nonce',
+      $nonce_field_config
+    );
+
+    register_graphql_mutation( 'createSubmission', [
+      'inputFields' => [
+        'name' => [
+          'type' => 'String',
+          'description' => 'User Full Name'
+        ],
+        'email' => [
+          'type' => 'String',
+          'description' => 'User Email Address'
+        ],
+        'message' => [
+          'type' => 'String',
+          'description' => 'User Entered Message'
+        ]
+      ],
+      'outputFields' => [
+        'success' => [
+          'type' => 'Boolean',
+          'description' => 'Whether or not the form submission was successful',
+          'resolve' => function ( $payload, $args, $context, $info ) {
+            return isset( $payload['success'] ) ? $payload['success'] : null;
+          }
+        ],
+        'data' => [
+          'type' => 'String',
+          'description' => 'Payload of submitted fields',
+          'resolve' => function ( $payload, $args, $context, $info ) {
+            return isset( $payload['data'] ) ? $payload['data'] : null;
+          }
+        ]
+      ],
+      'mutateAndGetPayload' => function( $input, $context, $info ) {
+
+        if ( !class_exists( 'ACF' ) ) {
+          return [
+            'success' => false,
+            'data' => 'ACF is not installed'
+          ];
+        }
+
+        $sanitized_data = [];
+        $errors = [];
+        $acceptable_fields = [
+          'name' => 'field_61cf3cb220daa',
+          'email' => 'field_61cf3cb720dab',
+          'message' => 'field_61cf3cbc20dac'
+        ];
+
+			foreach ( $acceptable_fields as $field_key => $acf_key ) {
+				if ( !empty($input[$field_key] ) ) {
+					$sanitized_data[$field_key] = sanitize_text_field( $input[$field_key] );
+				} else {
+					$errors[] = $field_key . ' was not filled out.';
+				}
+			}
+
+        if ( !empty( $errors ) ) {
+          return [
+            'success' => false,
+            'data' => $errors
+          ];
+        }
+
+        $form_submission = wp_insert_post([
+          'post_type' => 'form_submission',
+          'post_title' => $sanitized_data['name']
+        ], true);
+
+        if ( is_wp_error( $form_submission ) ) {
+          return [
+            'success' => false,
+            'data' => $form_submission->get_error_message()
+          ];
+        }
+
+        foreach ($acceptable_fields as $field_key => $acf_key) {
+          update_field($acf_key, $sanitized_data[$field_key], $form_submission);
+        }
+
+        // send email
+        $contactName = $_POST[$sanitized_data['name']];
+        $contactEmail = $_POST[$sanitized_data['email']];
+        $contactMessage = $_POST[$sanitized_data['message']];
+
+        $to = 'whiting.grant@gmail.com';
+        $subject = 'Work inquiry message: ' . $contactName;
+        $headers = 'From: '. $email . "\r\n" .
+        'Reply-To: ' . $contactEmail . "\r\n";
+
+        $sent = wp_mail( $to, $subject, strip_tags( $contactMessage ), $headers );
+
+        return [
+          'success' => true,
+          'data' => json_encode( $sanitized_data )
+        ];
+
+      }
+    ] );
+
   } );
-
-  // add_action( 'graphql_register_types', function() {
-
-  //   $field_config = [
-  //     'type' => 'Boolean',
-  //     'resolve' => function($root) {
-  //       return get_post_field('grid_image', $root->ID);
-  //     }
-  //   ];
-    
-  //   register_graphql_field(
-  //     'MediaItem',
-  //     'gridImage',
-  //     $field_config);
-  // });
 
   // add featured image support
   add_theme_support(

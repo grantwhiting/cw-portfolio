@@ -8,24 +8,20 @@ module.exports = {
     title: "Courtney Whiting Portfolio",
   },
   plugins: [
-    {
-      resolve: "gatsby-source-wordpress",
-      options: {
-        url: process.env.GQL_URL,
-        auth: {
-          htaccess: {
-            username: "flywheel",
-            password: "learned-ribbon",
-          },
-        },
-      },
-    },
     "gatsby-plugin-sass",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-transition-link",
+    "gatsby-plugin-client-side-redirect",
+    {
+      resolve: "gatsby-source-wordpress",
+      options: {
+        url: process.env.GQL_URL,
+        useACF: true,
+      },
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -50,9 +46,5 @@ module.exports = {
       },
       __key: "templates",
     },
-    "gatsby-plugin-client-side-redirect",
   ],
 };
-
-// https://www.youtube.com/embed/rp89vj3WV-U?rel=0&color=white&origin=https://www.ramseysolutions.com&enablejsapi=1
-// https://www.youtube.com/embed/rp89vj3WV-U?rel=0&color=white&origin=https://www.ramseysolutions.com

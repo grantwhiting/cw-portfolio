@@ -19,16 +19,15 @@ const Modal = () => {
       <AnimatePresence>
         {modal && (
           <motion.div
+            id="modalContainer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}
             className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen"
             style={{ background: "rgba(0,0,0,0.8)" }}
-            onClick={(event) => handleModal(event)}
           >
             <motion.div
-              id="modalContent"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}

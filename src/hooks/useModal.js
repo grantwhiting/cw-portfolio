@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default () => {
+const useModal = () => {
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState("I'm the Modal Content");
 
@@ -9,14 +9,14 @@ export default () => {
       e.preventDefault();
     }
 
-    if (e.target.id !== "modalContent") {
-      setModal(!modal);
+    setModal(!modal);
 
-      if (content) {
-        setModalContent(content);
-      }
+    if (content) {
+      setModalContent(content);
     }
   };
 
   return { modal, handleModal, modalContent };
 };
+
+export default useModal;
