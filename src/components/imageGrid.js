@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ExpandableImage from "./expandableImage";
+import { Link } from "gatsby";
 
 const ImageGrid = ({ projects }) => {
   const { nodes } = projects;
@@ -9,8 +10,8 @@ const ImageGrid = ({ projects }) => {
     <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3 masonry-columns">
       {nodes.map((item) =>
         item.hasProjectPage ? (
-          <a
-            href={item.uri}
+          <Link
+            to={item.uri}
             key={item.id}
             className="relative block w-full mb-3 mr-3 cursor-pointer aspect-ratio-square bg-gray-50 break-inside-avoid"
           >
@@ -23,7 +24,7 @@ const ImageGrid = ({ projects }) => {
             <span className="absolute z-10 w-full text-xl font-bold text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
               {item.title}
             </span>
-          </a>
+          </Link>
         ) : (
           <ExpandableImage
             key={item.id}
