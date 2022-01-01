@@ -24,8 +24,9 @@ const Modal = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}
-            className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen"
+            className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen modal-trigger"
             style={{ background: "rgba(0,0,0,0.8)" }}
+            onClick={(event) => handleModal(event)}
           >
             <motion.div
               initial={{ scale: 0 }}
@@ -35,7 +36,7 @@ const Modal = () => {
               className="relative flex flex-col items-start w-full max-w-5xl p-5 text-lg text-gray-800 bg-white rounded-lg shadow-lg h-4/5"
             >
               <button
-                className="absolute top-0 right-0 self-end w-8 h-8 font-bold"
+                className="absolute top-0 right-0 self-end w-8 h-8 font-bold modal-trigger"
                 onClick={(event) => handleModal(event)}
               >
                 &times;

@@ -71,7 +71,6 @@ const ContactForm = () => {
                 <p>An unknown error has occurred, please try again later...</p>
               )}
               {data && <p>yeah boi</p>}
-              {console.log(data)}
             </div>
           </>
         )}

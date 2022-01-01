@@ -9,10 +9,12 @@ const useModal = () => {
       e.preventDefault();
     }
 
-    setModal(!modal);
+    if (e.target.classList.contains("modal-trigger")) {
+      setModal(!modal);
 
-    if (content) {
-      setModalContent(content);
+      if (content) {
+        setModalContent(content);
+      }
     }
   };
 

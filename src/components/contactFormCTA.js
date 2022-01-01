@@ -7,7 +7,7 @@ const ContactFormCTA = ({ children }) => {
   return (
     <button
       onClick={(event) => handleModal(event, <ContactForm />)}
-      className="flex items-center w-full h-5 p-5 px-5 text-xl text-left transition-colors rounded-sm text-5 hover:text-gray-500"
+      className="flex items-center w-full h-5 p-5 px-5 text-xl text-left transition-colors rounded-sm modal-trigger text-5 hover:text-gray-500"
     >
       {children}
     </button>

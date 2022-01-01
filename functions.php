@@ -157,16 +157,15 @@
         }
 
         // send email
-        $contactName = $_POST[$sanitized_data['name']];
-        $contactEmail = $_POST[$sanitized_data['email']];
-        $contactMessage = $_POST[$sanitized_data['message']];
+        $contactName = $sanitized_data['name'];
+        $contactEmail = $sanitized_data['email'];
+        $contactMessage = $sanitized_data['message'];
 
         $to = 'whiting.grant@gmail.com';
         $subject = 'Work inquiry message: ' . $contactName;
-        $headers = 'From: '. $email . "\r\n" .
+        $headers = 'From: '. $contactEmail . "\r\n" .
         'Reply-To: ' . $contactEmail . "\r\n";
-
-        $sent = wp_mail( $to, $subject, strip_tags( $contactMessage ), $headers );
+        wp_mail( $to, $subject, strip_tags( $contactMessage ), $headers );
 
         return [
           'success' => true,
