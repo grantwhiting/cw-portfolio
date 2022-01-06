@@ -157,15 +157,15 @@
         }
 
         // send email
-        $contactName = $sanitized_data['name'];
-        $contactEmail = $sanitized_data['email'];
-        $contactMessage = $sanitized_data['message'];
+        // $contactName = $sanitized_data['name'];
+        // $contactEmail = $sanitized_data['email'];
+        // $contactMessage = $sanitized_data['message'];
 
-        $to = 'whiting.grant@gmail.com';
-        $subject = 'Work inquiry message: ' . $contactName;
-        $headers = 'From: '. $contactEmail . "\r\n" .
-        'Reply-To: ' . $contactEmail . "\r\n";
-        wp_mail( $to, $subject, strip_tags( $contactMessage ), $headers );
+        // $to = 'whiting.grant@gmail.com';
+        // $subject = 'Work inquiry message: ' . $contactName;
+        // $headers = 'From: '. $contactEmail . "\r\n" .
+        // 'Reply-To: ' . $contactEmail . "\r\n";
+        // wp_mail( $to, $subject, strip_tags( $contactMessage ), $headers );
 
         return [
           'success' => true,
