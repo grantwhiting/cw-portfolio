@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
-import FormErrors from "./formErrors";
 import { useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const CONTACT_MUTATION = gql`
   mutation CreateSubmissionMutation(
@@ -120,8 +120,13 @@ const ContactForm = () => {
       {(createSubmission, { loading, error, data }) => (
         <>
           {!data && (
-            <>
-              <form className="w-full">
+            <AnimatePresence>
+              <motion.form
+                className="w-full"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-3">
@@ -192,30 +197,37 @@ const ContactForm = () => {
                 <div className="px-4 py-3 text-right sm:px-6">
                   <button
                     onClick={(e) => handleSubmit(e, createSubmission)}
+                    disabled={loading}
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     {loading ? "Submitting" : "Submit"}
                   </button>
                 </div>
-              </form>
-              <div>
+              </motion.form>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
                 {error && (
                   <p>
-                    Uh oh! Something we wrong. Please try again or email{" "}
+                    Uh oh! Something went wrong. Please try again or email me at{" "}
                     <a href="mailto:hello@courtneywhiting.com">
                       hello@courtneywhiting.com
                     </a>
                     .
                   </p>
                 )}
-              </div>
-            </>
+              </motion.div>
+            </AnimatePresence>
           )}
           {data && (
-            <p className="text-2xl">
-              Thank you! I will reach out to you as soon as I can.
-            </p>
+            <div className="flex items-center justify-center w-full h-full">
+              <p className="text-2xl">
+                Thank you! I will reach out to you as soon as I can.
+              </p>
+            </div>
           )}
         </>
       )}
