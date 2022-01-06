@@ -1,15 +1,13 @@
 import React from "react";
 
-const FormErrors = ({ errors }) => {
-  Object.keys(errors).map((fieldName, i) => {
-    if (errors[fieldName].length) {
-      return (
-        <p key={i}>{errors[fieldName]}</p>
-      );
-    } else {
-      return '';
+const FormErrors = ({ formErrors }) => {
+  let render = null;
+  Object.keys(formErrors).map((fieldName, i) => {
+    if (formErrors[fieldName].length) {
+      render = <p key={i}>{formErrors[fieldName]}</p>;
     }
-  })
+  });
+  return render;
 };
 
 export default FormErrors;

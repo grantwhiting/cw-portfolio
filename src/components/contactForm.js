@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
+import FormErrors from "./formErrors";
 import { useEffect } from "react";
 
 const CONTACT_MUTATION = gql`
@@ -37,6 +38,13 @@ const ContactForm = () => {
     email: "",
     message: "",
   });
+  const [showErrors, setShowErrors] = useState(false);
+
+  useEffect(() => {
+    if (formValid) {
+      setShowErrors(false);
+    }
+  }, [formValid]);
 
   const handleUserInput = (e) => {
     const name = e.target.name;
@@ -65,18 +73,22 @@ const ContactForm = () => {
 
     switch (fieldName) {
       case "contact-name":
-        isNameValid = value.length;
-        fieldValidationErrors.name = isNameValid ? "" : " must be entered";
+        isNameValid = value.length > 0;
+        fieldValidationErrors.name = isNameValid
+          ? ""
+          : "Please enter your name";
         break;
       case "contact-email":
         isEmailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        fieldValidationErrors.email = isEmailValid ? "" : " is invalid";
+        fieldValidationErrors.email = isEmailValid
+          ? ""
+          : "Email address is invalid";
         break;
       case "contact-message":
-        isMessageValid = value.length;
+        isMessageValid = value.length > 0;
         fieldValidationErrors.message = isMessageValid
           ? ""
-          : " must be entered";
+          : "Please enter a message";
         break;
     }
 
@@ -84,13 +96,12 @@ const ContactForm = () => {
     setNameValid(isNameValid);
     setEmailValid(isEmailValid);
     setMessageValid(isMessageValid);
-    setFormValid(nameValid && emailValid && messageValid);
+    setFormValid(isNameValid && isEmailValid && isMessageValid);
   };
 
   const handleSubmit = async (e, createSubmission) => {
     e.preventDefault();
-
-    if (nameValid && emailValid && messageValid) {
+    if (formValid) {
       createSubmission({
         variables: {
           clientMutationId: "contact form",
@@ -99,6 +110,8 @@ const ContactForm = () => {
           message: messageValue,
         },
       });
+    } else {
+      setShowErrors(true);
     }
   };
 
@@ -126,6 +139,11 @@ const ContactForm = () => {
                         className="block w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11"
                         onChange={handleUserInput}
                       />
+                      {showErrors && !nameValid && (
+                        <p className="mt-3 text-sm text-red-500">
+                          Please enter you name.
+                        </p>
+                      )}
                     </div>
 
                     <div className="col-span-6 sm:col-span-3">
@@ -142,7 +160,13 @@ const ContactForm = () => {
                         className="block w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11"
                         onChange={handleUserInput}
                       />
+                      {showErrors && !emailValid && (
+                        <p className="mt-3 text-sm text-red-500">
+                          Please enter a valid email address.
+                        </p>
+                      )}
                     </div>
+
                     <div className="col-span-6">
                       <label
                         htmlFor="contact-message"
@@ -157,6 +181,11 @@ const ContactForm = () => {
                         className="block w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-60"
                         onChange={handleUserInput}
                       ></textarea>
+                      {showErrors && !messageValid && (
+                        <p className="mt-3 text-sm text-red-500">
+                          Please enter a message.
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
