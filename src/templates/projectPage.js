@@ -10,13 +10,23 @@ const ProjectPage = ({ pageContext }) => {
   return (
     <Layout location={location}>
       <h1 className="text-4xl text-center">{title}</h1>
-      <Carousel images={galleryImages} className="mt-9"></Carousel>
       <div
         id="content"
         dangerouslySetInnerHTML={{ __html: content }}
-        className="mx-auto mt-6"
+        className="mx-auto mt-9"
         style={{ maxWidth: "1000px" }}
       ></div>
+      {galleryImages.length > 1 ? (
+        <Carousel images={galleryImages} className="mt-9"></Carousel>
+      ) : (
+        <div className="w-4/5 mx-auto mt-9" style={{ minHeight: "800px" }}>
+          <img
+            src={galleryImages[0].guid}
+            alt={title}
+            className="object-contain w-full h-full"
+          />
+        </div>
+      )}
     </Layout>
   );
 };

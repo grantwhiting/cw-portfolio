@@ -19,7 +19,6 @@ exports.createPages = async ({
               title
               uri
               content
-              hasProjectPage
               featuredImage {
                 node {
                   guid

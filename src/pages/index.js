@@ -24,7 +24,6 @@ export const query = graphql`
         title
         uri
         content
-        hasProjectPage
         featuredImage {
           node {
             guid
@@ -52,7 +51,6 @@ Index.propTypes = {
           title: PropTypes.string,
           uri: PropTypes.string,
           content: PropTypes.string,
-          hasProjectPage: PropTypes.bool,
           featuredImage: PropTypes.shape({
             node: PropTypes.shape({
               guide: PropTypes.string,

@@ -57,6 +57,7 @@ const Carousel = ({ images, className }) => {
               initial="enter"
               animate="center"
               exit="exit"
+              alt=""
               transition={{
                 x: { type: "spring", stiffness: 500, damping: 30 },
                 opacity: { duration: 0.2 },
