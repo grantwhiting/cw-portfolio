@@ -43,40 +43,6 @@
 		  $gallery_image_field_config
     );
 
-    // register project field
-    $project_field_config = [
-      'type' => 'Boolean',
-      'resolve' => function( $proj ) {
-        $whereClause = "`t`.`ID` = " . strval( $proj->ID ) . "";
-        $params = array(
-          'limit' => -1,
-          'where' => $whereClause
-        );
-        $hasPage = pods('project', $params)->field( 'has_project_page' );
-        return $hasPage;
-      }
-    ];
-  
-    register_graphql_field(
-      'Project',
-      'hasProjectPage',
-      $project_field_config
-    );
-
-    // register nonce field
-    $nonce_field_config = [
-      'type' => 'String',
-      'resolve' => function () {
-        return wp_create_nonce( 'wp_rest' );
-      }
-    ];
-
-    register_graphql_field(
-      'RootQuery',
-      'nonce',
-      $nonce_field_config
-    );
-
     register_graphql_mutation( 'createSubmission', [
       'inputFields' => [
         'name' => [
