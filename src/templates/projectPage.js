@@ -19,7 +19,7 @@ const ProjectPage = ({ pageContext }) => {
       {galleryImages.length > 1 ? (
         <Carousel images={galleryImages} className="mt-9"></Carousel>
       ) : (
-        <div className="w-4/5 mx-auto mt-9" style={{ minHeight: "800px" }}>
+        <div className="max-w-3xl mx-auto mt-9" style={{ minHeight: "800px" }}>
           <img
             src={galleryImages[0].guid}
             alt={title}

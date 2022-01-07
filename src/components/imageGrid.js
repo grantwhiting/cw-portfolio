@@ -24,7 +24,6 @@ const ImageGrid = ({ projects }) => {
           </span>
         </Link>
       ))}
-      ;
     </div>
   );
 };
