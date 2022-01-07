@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
+import { PropTypes } from "prop-types";
 
 // Example: https://codesandbox.io/s/framer-motion-image-gallery-pqvx3?from-embed=&file=/src/Example.tsx:838-977
 
@@ -121,6 +122,15 @@ const Carousel = ({ images, className }) => {
   }
 
   return null;
+};
+
+Carousel.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      guid: PropTypes.string,
+    })
+  ),
+  className: PropTypes.string,
 };
 
 export default Carousel;
