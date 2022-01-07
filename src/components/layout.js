@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
           />
         </svg>
       </button>
-      <div className="flex h-screen">
+      <div className="flex h-screen mx-auto">
         <motion.section
           key={0}
           initial={{ x: !isMobileScreen && navIsOpen ? 0 : "-100%" }}

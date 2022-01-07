@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLocation } from "@reach/router";
 import { ModalProvider } from "../contexts/modal-provider";
 import ContactFormCTA from "./contactFormCTA";
@@ -15,15 +15,17 @@ const SideNavItem = ({ to, children }) => {
         activeClassName="nav-item--active"
         to={to}
       >
-        <span className="transition-colors nav-item-text hover:text-gray-500">
-          {children}
-        </span>
-        <motion.span
-          animate={{
-            width: location.pathname === to ? "calc(100% - 20px)" : "0",
-          }}
-          className="nav-item-arrow"
-        ></motion.span>
+        <span className="nav-item-text">{children}</span>
+        <AnimatePresence>
+          {location.pathname === to && (
+            <motion.span
+              initial={{ width: 0 }}
+              animate={{ width: "calc(100% - 20px)" }}
+              exit={{ width: 0 }}
+              className="nav-item-arrow"
+            ></motion.span>
+          )}
+        </AnimatePresence>
       </Link>
     </li>
   );
@@ -39,6 +41,7 @@ const SideNav = ({ onToggleMobileNav }) => {
           id
           name
           slug
+          description
         }
       }
     }

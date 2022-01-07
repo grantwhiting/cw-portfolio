@@ -1,7 +1,44 @@
 .nav-item {
+  $colors: (
+    #aecdce,
+    #5e7076,
+    #2e4348,
+    #de987e,
+    #e7b6a3,
+    #fdedcc
+  );
+
+  @for $i from 1 through length($colors) {
+    $c: nth($colors, $i);
+    &:nth-child(#{$i}) &-arrow {
+      background-color: $c;
+    }
+
+    &:nth-child(#{$i})::before,
+    &:nth-child(#{$i}) &--active &-arrow::after {
+      border-left-color: $c;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0;
+    left: 0;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-width: 20px;
+  }
+
   &-text {
     z-index: 1;
     position: absolute;
+    transition: color 0.25s;
+    left: 25px;
+    transition: color 0.5s;
   }
 
   &-arrow {
@@ -10,26 +47,23 @@
     width: 0;
     position: absolute;
     height: 100%;
-    width: 0;
-    background-color: lightblue;
     margin-left: -20px;
   }
 
-  &--active &-arrow {
+  &--active &-text {
+    color: #fff;
+  }
 
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 100%;
-      height: 0;
-      width: 0;
-      border-style: solid;
-      border-color: lightblue;
-      border-top-color: transparent;
-      border-bottom-color: transparent;
-      border-right-color: transparent;
-      border-width: 20px;
-    }
+  &--active &-arrow::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 0;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-width: 20px;
   }
 }

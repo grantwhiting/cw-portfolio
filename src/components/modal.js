@@ -33,7 +33,7 @@ const Modal = () => {
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
               transition={spring}
-              className="relative flex flex-col items-start max-w-5xl p-5 text-lg text-gray-800 bg-white rounded-lg shadow-lg h-4/5"
+              className="relative flex flex-col items-start max-w-5xl p-5 text-lg text-gray-800 bg-white rounded-lg shadow-lg"
               style={{ width: "90%" }}
             >
               <button
