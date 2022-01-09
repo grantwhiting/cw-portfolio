@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { motion } from "framer-motion";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const containerVariants = {
   mount: {
@@ -50,10 +51,10 @@ const ImageGrid = ({ projects }) => {
               whileTap={{ scale: 0.9 }}
               className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-center bg-no-repeat bg-cover rounded-xl"
             >
-              <img
-                className="object-cover w-full h-full"
-                src={item.featuredImage?.node.guid}
+              <GatsbyImage
+                image={getImage(item.featuredImage?.node.localFile)}
                 alt=""
+                className="object-cover w-full h-full"
               />
             </motion.div>
           </Link>

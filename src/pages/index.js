@@ -27,6 +27,11 @@ export const query = graphql`
         featuredImage {
           node {
             guid
+            localFile {
+              childImageSharp {
+                gatsbyImageData(placeholder: BLURRED)
+              }
+            }
           }
         }
         galleryImages {

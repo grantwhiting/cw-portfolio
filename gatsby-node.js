@@ -22,6 +22,11 @@ exports.createPages = async ({
               featuredImage {
                 node {
                   guid
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(placeholder: BLURRED)
+                    }
+                  }
                 }
               }
               galleryImages {
