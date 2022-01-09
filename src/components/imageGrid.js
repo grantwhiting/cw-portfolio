@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const containerVariants = {
   mount: {
@@ -41,22 +41,22 @@ const ImageGrid = ({ projects }) => {
     >
       {nodes.map((item) => (
         <motion.div variants={childVariants} key={item.id}>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }}>
-            <Link
-              to={item.uri}
-              className="relative block w-full mb-3 mr-3 cursor-pointer aspect-ratio-square bg-gray-50 break-inside-avoid"
+          <Link
+            to={item.uri}
+            className="relative block w-full mb-3 mr-3 cursor-pointer aspect-ratio-square bg-gray-50 break-inside-avoid"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-center bg-no-repeat bg-cover rounded-xl"
             >
-              <div
-                className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-center bg-no-repeat bg-cover rounded-xl"
-                style={{
-                  backgroundImage: `url(${item.featuredImage?.node.guid})`,
-                }}
-              ></div>
-              <span className="absolute z-10 w-full text-xl font-bold text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                {item.title}
-              </span>
-            </Link>
-          </motion.div>
+              <img
+                className="object-cover w-full h-full"
+                src={item.featuredImage?.node.guid}
+                alt=""
+              />
+            </motion.div>
+          </Link>
         </motion.div>
       ))}
     </motion.div>
