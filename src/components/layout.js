@@ -8,11 +8,32 @@ import useMatchMedia from "../hooks/useMatchMedia";
 
 const Layout = ({ children }) => {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
-  const isMobileScreen = useMatchMedia("(max-width: 768px)");
+  const [isDeskTop, setIsDeskTop] = useState();
+  const [isMobile, setIsMobile] = useState();
+  const matchesMedia = useMatchMedia("(max-width: 768px)");
   const navWidth = "230px";
+
+  useEffect(() => {
+    if (matchesMedia) {
+      setIsDeskTop(false);
+      setIsMobile(true);
+    } else {
+      setIsDeskTop(true);
+      setIsMobile(false);
+    }
+  }, [matchesMedia]);
 
   const handleMobileNavToggle = () => {
     setMobileNavIsOpen(!mobileNavIsOpen);
+  };
+
+  const mobileNavVariants = {
+    enter: {
+      x: 0,
+    },
+    exit: {
+      x: "-100%",
+    },
   };
 
   return (
@@ -44,25 +65,32 @@ const Layout = ({ children }) => {
         </svg>
       </button>
       <div className="flex h-screen mx-auto">
-        {isMobileScreen ? (
-          <motion.section
-            animate={{ x: mobileNavIsOpen ? 0 : "-100%" }}
-            className="fixed top-0 z-20 flex-shrink-0 h-screen bg-white"
-            style={{ width: navWidth }}
-          >
-            <SideNav onToggleMobileNav={handleMobileNavToggle} />
-          </motion.section>
-        ) : (
-          <section className="flex-shrink-0 h-screen bg-white">
-            <SideNav onToggleMobileNav={handleMobileNavToggle} />
-          </section>
-        )}
+        <AnimatePresence initial={false}>
+          {isMobile && mobileNavIsOpen && (
+            <motion.section
+              key="mNav"
+              variants={mobileNavVariants}
+              initial="exit"
+              animate="enter"
+              exit="exit"
+              className="fixed top-0 z-20 flex-shrink-0 h-screen bg-white"
+              style={{ width: navWidth }}
+            >
+              <SideNav onToggleMobileNav={handleMobileNavToggle} />
+            </motion.section>
+          )}
+          {isDeskTop && (
+            <section className="flex-shrink-0 h-screen bg-white">
+              <SideNav onToggleMobileNav={handleMobileNavToggle} />
+            </section>
+          )}
+        </AnimatePresence>
         <section className="flex flex-col flex-grow">
           <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
             {children}
           </main>
           <AnimatePresence>
-            {mobileNavIsOpen && isMobileScreen && (
+            {mobileNavIsOpen && isMobile && (
               <motion.div
                 onClick={() => setMobileNavIsOpen(false)}
                 initial={{ opacity: 0 }}
