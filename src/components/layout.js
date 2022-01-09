@@ -7,17 +7,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import useMatchMedia from "../hooks/useMatchMedia";
 
 const Layout = ({ children }) => {
-  const [navIsOpen, setNavIsOpen] = useState(true);
+  const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
   const isMobileScreen = useMatchMedia("(max-width: 768px)");
   const navWidth = "230px";
 
   const handleMobileNavToggle = () => {
-    setNavIsOpen(!navIsOpen);
+    setMobileNavIsOpen(!mobileNavIsOpen);
   };
-
-  useEffect(() => {
-    setNavIsOpen(!isMobileScreen);
-  }, [isMobileScreen]);
 
   return (
     <FilterProvider>
@@ -48,25 +44,29 @@ const Layout = ({ children }) => {
         </svg>
       </button>
       <div className="flex h-screen mx-auto">
-        <motion.section
-          initial={{ x: !isMobileScreen && navIsOpen ? 0 : "-100%" }}
-          animate={{ x: navIsOpen ? 0 : "-100%" }}
-          transition={{ bounce: 0.55 }}
-          className="fixed top-0 z-20 flex-shrink-0 h-screen transform bg-white md:static md:-translate-x-0 transform-none"
-          style={{ width: navWidth }}
-        >
-          <SideNav onToggleMobileNav={handleMobileNavToggle} />
-        </motion.section>
+        {isMobileScreen ? (
+          <motion.section
+            animate={{ x: mobileNavIsOpen ? 0 : "-100%" }}
+            className="fixed top-0 z-20 flex-shrink-0 h-screen bg-white"
+            style={{ width: navWidth }}
+          >
+            <SideNav onToggleMobileNav={handleMobileNavToggle} />
+          </motion.section>
+        ) : (
+          <section className="flex-shrink-0 h-screen bg-white">
+            <SideNav onToggleMobileNav={handleMobileNavToggle} />
+          </section>
+        )}
         <section className="flex flex-col flex-grow">
           <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
             {children}
           </main>
-          <AnimatePresence initial={false}>
-            {navIsOpen && isMobileScreen && (
+          <AnimatePresence>
+            {mobileNavIsOpen && isMobileScreen && (
               <motion.div
-                onClick={() => setNavIsOpen(false)}
+                onClick={() => setMobileNavIsOpen(false)}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: navIsOpen ? 0.7 : 0 }}
+                animate={{ opacity: mobileNavIsOpen ? 0.7 : 0 }}
                 transition={{ bounce: 0.55 }}
                 exit={{ opacity: 0 }}
                 className="absolute top-0 bottom-0 left-0 right-0 z-10 bg-black cursor-pointer"

@@ -11,7 +11,6 @@ function useMatchMedia(query) {
     }
 
     const listener = () => {
-      console.log(media.matches);
       setMatches(media.matches);
     };
 
