@@ -62,6 +62,10 @@ const SideNav = ({ onToggleMobileNav }) => {
     (category) => category.name !== "Uncategorized"
   );
 
+  filteredCategories.sort(
+    (a, b) => parseInt(a.description) - parseInt(b.description)
+  );
+
   const filterNavItems = filteredCategories.map((category) => (
     <SideNavItem key={category.id} to={`/${category.slug}`}>
       {category.name}
