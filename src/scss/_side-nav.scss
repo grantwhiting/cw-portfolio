@@ -15,46 +15,29 @@
     }
 
     &:nth-child(#{$i})::before,
-    &:nth-child(#{$i}) &--active &-arrow::after {
+    &:nth-child(#{$i}) &-arrow::after {
       border-left-color: $c;
     }
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 0;
-    left: 0;
-    border-style: solid;
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-    border-width: 20px;
-  }
-
   &-text {
     z-index: 1;
-    position: absolute;
-    transition: color 0.25s;
-    left: 25px;
-    transition: color 0.5s;
+    position: relative;
+    margin-left: 5px;
   }
 
   &-arrow {
-    z-index: 0;
-    transition: width 0.2s ease;
-    width: 0;
+    display: block;
     position: absolute;
     height: 100%;
-    margin-left: -20px;
+    left: 0;
   }
 
   &--active &-text {
     color: #fff;
   }
 
-  &--active &-arrow::after {
+  &-arrow::after {
     content: "";
     position: absolute;
     top: 0;

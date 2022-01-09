@@ -49,20 +49,19 @@ const Layout = ({ children }) => {
       </button>
       <div className="flex h-screen mx-auto">
         <motion.section
-          key={0}
           initial={{ x: !isMobileScreen && navIsOpen ? 0 : "-100%" }}
           animate={{ x: navIsOpen ? 0 : "-100%" }}
           transition={{ bounce: 0.55 }}
-          className="fixed top-0 z-20 flex-shrink-0 h-screen overflow-y-auto transform bg-white md:static md:-translate-x-0 transform-none"
+          className="fixed top-0 z-20 flex-shrink-0 h-screen transform bg-white md:static md:-translate-x-0 transform-none"
           style={{ width: navWidth }}
         >
           <SideNav onToggleMobileNav={handleMobileNavToggle} />
         </motion.section>
-        <section key={1} className="flex flex-col flex-grow">
+        <section className="flex flex-col flex-grow">
           <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
             {children}
           </main>
-          <AnimatePresence>
+          <AnimatePresence initial={false}>
             {navIsOpen && isMobileScreen && (
               <motion.div
                 onClick={() => setNavIsOpen(false)}

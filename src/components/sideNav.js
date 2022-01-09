@@ -1,13 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import { AnimatePresence, motion } from "framer-motion";
 import { useLocation } from "@reach/router";
 import { ModalProvider } from "../contexts/modal-provider";
 import ContactFormCTA from "./contactFormCTA";
+import { motion } from "framer-motion";
+
+const spring = {
+  type: "spring",
+  damping: 50,
+  stiffness: 750,
+  mass: 2,
+  duration: 0.5,
+};
+
+const variants = {
+  collapsed: { width: 0 },
+  expanded: { width: "calc(100% - 20px)" },
+};
 
 const SideNavItem = ({ to, children }) => {
   const location = useLocation();
+  const isActive = location.pathname === to;
+
   return (
     <li className="relative nav-item">
       <Link
@@ -16,16 +31,12 @@ const SideNavItem = ({ to, children }) => {
         to={to}
       >
         <span className="nav-item-text">{children}</span>
-        <AnimatePresence>
-          {location.pathname === to && (
-            <motion.span
-              initial={{ width: 0 }}
-              animate={{ width: "calc(100% - 20px)" }}
-              exit={{ width: 0 }}
-              className="nav-item-arrow"
-            ></motion.span>
-          )}
-        </AnimatePresence>
+        <motion.span
+          variants={variants}
+          animate={isActive ? "expanded" : "collapsed"}
+          transition={spring}
+          className="nav-item-arrow"
+        ></motion.span>
       </Link>
     </li>
   );
@@ -79,11 +90,9 @@ const SideNav = ({ onToggleMobileNav }) => {
         </svg>
       </button>
       <ul className="pt-3 space-y-1 md:pt-10">
-        <>
-          <SideNavItem to="/">All Projects</SideNavItem>
-          {filterNavItems}
-          <SideNavItem to="/about">About</SideNavItem>
-        </>
+        <SideNavItem to="/">All Projects</SideNavItem>
+        {filterNavItems}
+        <SideNavItem to="/about">About</SideNavItem>
       </ul>
       <ModalProvider>
         <ContactFormCTA>Contact</ContactFormCTA>
