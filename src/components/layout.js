@@ -8,8 +8,8 @@ import useMatchMedia from "../hooks/useMatchMedia";
 
 const Layout = ({ children }) => {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
-  const [isDeskTop, setIsDeskTop] = useState();
-  const [isMobile, setIsMobile] = useState();
+  const [isDeskTop, setIsDeskTop] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
   const matchesMedia = useMatchMedia("(max-width: 768px)");
   const navWidth = "230px";
 
