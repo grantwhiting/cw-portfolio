@@ -79,12 +79,12 @@ const Layout = ({ children }) => {
               <SideNav onToggleMobileNav={handleMobileNavToggle} />
             </motion.section>
           )}
-          {isDeskTop && (
-            <section className="flex-shrink-0 h-screen bg-white">
-              <SideNav onToggleMobileNav={handleMobileNavToggle} />
-            </section>
-          )}
         </AnimatePresence>
+        {isDeskTop && (
+          <section className="flex-shrink-0 h-screen bg-white">
+            <SideNav onToggleMobileNav={handleMobileNavToggle} />
+          </section>
+        )}
         <section className="flex flex-col flex-grow">
           <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
             {children}
