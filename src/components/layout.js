@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import SideNav from "./sideNav";
@@ -8,8 +8,10 @@ import useMatchMedia from "../hooks/useMatchMedia";
 
 const Layout = ({ children }) => {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
+  const [firstRender, setFirstRender] = useState(true);
   const isMobile = useMatchMedia("(max-width: 768px)");
-  const firstRender = useMemo(() => false, []);
+
+  useEffect(() => setFirstRender(false), []);
 
   const navWidth = "230px";
 
