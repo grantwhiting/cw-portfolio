@@ -141,7 +141,7 @@ const ContactForm = () => {
                         name="contact-name"
                         id="contact-name"
                         value={nameValue}
-                        className="block w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11"
+                        className="block w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-brand-default focus:border-brand-default sm:text-sm h-11"
                         onChange={handleUserInput}
                       />
                       {showErrors && !nameValid && (
@@ -162,7 +162,7 @@ const ContactForm = () => {
                         type="email"
                         name="contact-email"
                         value={emailValue}
-                        className="block w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11"
+                        className="block w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-brand-default focus:border-brand-default sm:text-sm h-11"
                         onChange={handleUserInput}
                       />
                       {showErrors && !emailValid && (
@@ -183,7 +183,7 @@ const ContactForm = () => {
                         id="contact-message"
                         name="contact-message"
                         value={messageValue}
-                        className="block w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-60"
+                        className="block w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-brand-default focus:border-brand-default sm:text-sm h-60"
                         onChange={handleUserInput}
                       ></textarea>
                       {showErrors && !messageValid && (
@@ -199,7 +199,7 @@ const ContactForm = () => {
                     onClick={(e) => handleSubmit(e, createSubmission)}
                     disabled={loading}
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white transition border border-transparent rounded-md shadow-sm bg-brand-default hover:bg-brand-lighter focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-default"
                   >
                     {loading ? "Submitting" : "Submit"}
                   </button>

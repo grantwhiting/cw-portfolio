@@ -65,7 +65,7 @@ const Layout = ({ children }) => {
               initial="exit"
               animate="enter"
               exit="exit"
-              className="fixed top-0 z-20 flex-shrink-0 h-screen bg-white"
+              className="fixed top-0 z-20 flex-shrink-0 h-screen overflow-y-auto bg-white"
               style={{ width: navWidth }}
             >
               <SideNav onToggleMobileNav={handleMobileNavToggle} />

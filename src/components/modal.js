@@ -33,8 +33,8 @@ const Modal = () => {
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
               transition={spring}
-              className="relative flex flex-col items-start max-w-5xl p-5 text-lg text-gray-800 bg-white rounded-lg shadow-lg"
-              style={{ width: "90%" }}
+              className="relative flex flex-col items-start max-w-5xl p-5 overflow-auto overflow-y-auto text-lg text-gray-800 bg-white rounded-lg shadow-lg"
+              style={{ width: "90%", maxHeight: "90%" }}
             >
               <button
                 className="absolute self-end font-bold right-2 top-2 h-9 w-9 modal-trigger"
@@ -51,6 +51,7 @@ const Modal = () => {
                     fillRule="evenodd"
                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                     clipRule="evenodd"
+                    className="modal-trigger"
                   />
                 </svg>
               </button>
