@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import SideNav from "./sideNav";
@@ -9,14 +9,7 @@ import useMatchMedia from "../hooks/useMatchMedia";
 const Layout = ({ children }) => {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
   const isMobile = useMatchMedia("(max-width: 768px)");
-  const firstRender = useRef(true);
-
-  useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
-  }, []);
+  const firstRender = useMemo(() => false, []);
 
   const navWidth = "230px";
 
@@ -77,7 +70,7 @@ const Layout = ({ children }) => {
             </motion.section>
           )}
         </AnimatePresence>
-        {!isMobile && !firstRender.current && (
+        {!isMobile && !firstRender && (
           <section className="flex-shrink-0 h-screen bg-white">
             <SideNav onToggleMobileNav={handleMobileNavToggle} />
           </section>
