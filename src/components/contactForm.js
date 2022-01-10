@@ -146,7 +146,7 @@ const ContactForm = () => {
                       />
                       {showErrors && !nameValid && (
                         <p className="mt-3 text-sm text-red-500">
-                          Please enter you name.
+                          Please enter your name.
                         </p>
                       )}
                     </div>
