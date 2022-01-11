@@ -59,7 +59,11 @@ const SideNav = ({ onToggleMobileNav }) => {
   `);
 
   const filteredCategories = categories
-    .filter((category) => category.name !== "Uncategorized")
+    .filter(
+      (category) =>
+        category.name !== "Uncategorized" &&
+        category.name !== "Kids' Lit Illustrations"
+    )
     .sort((a, b) => parseInt(a.description) - parseInt(b.description));
 
   const filterNavItems = filteredCategories.map((category) => (
@@ -90,7 +94,7 @@ const SideNav = ({ onToggleMobileNav }) => {
         </svg>
       </button>
       <ul className="pt-3 space-y-1 md:pt-10">
-        <SideNavItem to="/">All Projects</SideNavItem>
+        <SideNavItem to="/">Kids Lit Illustrations</SideNavItem>
         {filterNavItems}
         <SideNavItem to="/about">About</SideNavItem>
       </ul>

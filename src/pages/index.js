@@ -18,7 +18,13 @@ const Index = ({ data }) => {
 
 export const query = graphql`
   query HomePageQuery {
-    allWpProject {
+    allWpProject(
+      filter: {
+        categories: {
+          nodes: { elemMatch: { name: { eq: "Kids' Lit Illustrations" } } }
+        }
+      }
+    ) {
       nodes {
         id
         title
