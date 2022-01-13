@@ -94,7 +94,7 @@ const SideNav = ({ onToggleMobileNav }) => {
         </svg>
       </button>
       <ul className="pt-3 space-y-1 md:pt-10">
-        <SideNavItem to="/">Kids Lit Illustrations</SideNavItem>
+        <SideNavItem to="/">Kids' Lit Illustrations</SideNavItem>
         {filterNavItems}
         <SideNavItem to="/about">About</SideNavItem>
       </ul>

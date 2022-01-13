@@ -32,10 +32,6 @@ const Layout = ({ children }) => {
     <FilterProvider>
       <Helmet>
         <title>Courtney Whiting's Portfolio</title>
-        <link
-          href="https://use.typekit.net/oov2wcw.css"
-          rel="stylesheet"
-        ></link>
       </Helmet>
       <button
         onClick={handleMobileNavToggle}
