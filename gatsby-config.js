@@ -15,6 +15,14 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-client-side-redirect",
     {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        typekit: {
+          id: process.env.TYPEKIT_ID,
+        },
+      },
+    },
+    {
       resolve: "gatsby-source-wordpress",
       options: {
         url: process.env.GQL_URL,
