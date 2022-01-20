@@ -5,6 +5,7 @@ import { useLocation } from "@reach/router";
 import { ModalProvider } from "../contexts/modal-provider";
 import ContactFormCTA from "./contactFormCTA";
 import { motion } from "framer-motion";
+import { StaticImage } from "gatsby-plugin-image";
 
 const spring = {
   type: "spring",
@@ -93,7 +94,13 @@ const SideNav = ({ onToggleMobileNav }) => {
           />
         </svg>
       </button>
-      <ul className="pt-3 space-y-1 md:pt-10">
+      <StaticImage
+        className="hidden mt-12 mb-4 ml-auto mr-auto md:block"
+        style={{ width: "93%" }}
+        src="../images/logo.png"
+        alt="Courtney Whiting's Logo"
+      />
+      <ul className="pt-3 space-y-1 md:mt-6">
         <SideNavItem to="/">Kids' Lit Illustrations</SideNavItem>
         {filterNavItems}
         <SideNavItem to="/about">About</SideNavItem>

@@ -6,6 +6,7 @@ import FilterProvider from "../contexts/filter-provider";
 import { motion, AnimatePresence } from "framer-motion";
 import useMatchMedia from "../hooks/useMatchMedia";
 import favicon from "../images/favicon.png";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Layout = ({ children }) => {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
@@ -71,12 +72,20 @@ const Layout = ({ children }) => {
           )}
         </AnimatePresence>
         {!isMobile && !firstRender && (
-          <section className="flex-shrink-0 h-screen bg-white">
+          <section
+            className="flex-shrink-0 h-screen bg-white"
+            style={{ width: "300px" }}
+          >
             <SideNav onToggleMobileNav={handleMobileNavToggle} />
           </section>
         )}
         <section className="flex flex-col flex-grow">
           <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
+            <StaticImage
+              className="block w-2/3 max-w-xs mb-5 ml-auto mr-auto md:hidden"
+              src="../images/logo.png"
+              alt="Courtney Whiting's Logo"
+            />
             {children}
           </main>
           <AnimatePresence>
