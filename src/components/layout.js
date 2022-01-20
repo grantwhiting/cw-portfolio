@@ -5,6 +5,7 @@ import SideNav from "./sideNav";
 import FilterProvider from "../contexts/filter-provider";
 import { motion, AnimatePresence } from "framer-motion";
 import useMatchMedia from "../hooks/useMatchMedia";
+import favicon from "../images/favicon.png";
 
 const Layout = ({ children }) => {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
@@ -31,6 +32,7 @@ const Layout = ({ children }) => {
   return (
     <FilterProvider>
       <Helmet>
+        <link rel="icon" type="image/png" href={favicon} sizes="32x32"></link>
         <title>Courtney Whiting's Portfolio</title>
       </Helmet>
       <button
