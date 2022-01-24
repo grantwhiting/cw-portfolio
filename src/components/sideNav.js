@@ -94,9 +94,9 @@ const SideNav = ({ onToggleMobileNav }) => {
           />
         </svg>
       </button>
-      <div className="hidden md:block">
+      <div className="flex hidden md:block">
         <StaticImage
-          className="hidden mt-12 mb-4 ml-auto mr-auto md:block"
+          className="mt-12 mb-4 ml-auto mr-auto"
           style={{ width: "93%" }}
           src="../images/logo.png"
           alt="Courtney Whiting's Logo"
