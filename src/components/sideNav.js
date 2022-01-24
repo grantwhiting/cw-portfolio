@@ -94,12 +94,14 @@ const SideNav = ({ onToggleMobileNav }) => {
           />
         </svg>
       </button>
-      <StaticImage
-        className="hidden mt-12 mb-4 ml-auto mr-auto md:block"
-        style={{ width: "93%" }}
-        src="../images/logo.png"
-        alt="Courtney Whiting's Logo"
-      />
+      <div className="hidden md:block">
+        <StaticImage
+          className="hidden mt-12 mb-4 ml-auto mr-auto md:block"
+          style={{ width: "93%" }}
+          src="../images/logo.png"
+          alt="Courtney Whiting's Logo"
+        />
+      </div>
       <ul className="pt-3 space-y-1 md:mt-6">
         <SideNavItem to="/">Kids' Lit Illustrations</SideNavItem>
         {filterNavItems}

@@ -81,7 +81,7 @@ const Layout = ({ children }) => {
         )}
         <section className="flex flex-col flex-grow">
           <main className="flex-grow w-full px-4 pt-12 pb-12 m-auto overflow-y-auto max-w-screen-desk">
-            <div className="md:hidden">
+            <div className="flex md:hidden">
               <StaticImage
                 className="block w-2/3 max-w-xs mb-5 ml-auto mr-auto"
                 src="../images/logo.png"
