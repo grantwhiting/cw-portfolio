@@ -94,7 +94,7 @@ const SideNav = ({ onToggleMobileNav }) => {
           />
         </svg>
       </button>
-      <div className="flex hidden md:block">
+      <div className="hidden md:flex">
         <StaticImage
           className="mt-12 mb-4 ml-auto mr-auto"
           style={{ width: "93%" }}
