@@ -48,7 +48,7 @@ const Carousel = ({ images, className }) => {
 
     return (
       <div className={classNames}>
-        <div className="relative w-4/5 mx-auto" style={{ minHeight: "800px" }}>
+        <div className="relative w-4/5 mx-auto aspect-[4/3]">
           <AnimatePresence initial={false} custom={direction}>
             <motion.img
               key={page}
@@ -75,12 +75,12 @@ const Carousel = ({ images, className }) => {
                   paginate(e, -1);
                 }
               }}
-              className="absolute object-contain w-full h-full"
+              className="absolute object-contain w-full h-full top-0"
             />
           </AnimatePresence>
         </div>
         <button
-          className="absolute flex items-center justify-center -translate-y-1/2 top-1/2 w-14 h-14"
+          className="absolute flex items-center justify-center -translate-y-1/2 top-1/2 w-14 h-14 z-10"
           onClick={(e) => paginate(e, -1)}
         >
           <svg
@@ -99,7 +99,7 @@ const Carousel = ({ images, className }) => {
           </svg>
         </button>
         <button
-          className="absolute flex items-center justify-center -translate-y-1/2 top-1/2 right-4 w-14 h-14"
+          className="absolute flex items-center justify-center -translate-y-1/2 top-1/2 right-4 w-14 h-14 z-10"
           onClick={(e) => paginate(e, 1)}
         >
           <svg
