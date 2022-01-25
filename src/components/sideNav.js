@@ -106,7 +106,9 @@ const SideNav = ({ onToggleMobileNav }) => {
         <SideNavItem to="/">Kids' Lit Illustrations</SideNavItem>
         {filterNavItems}
         <SideNavItem to="/about">About</SideNavItem>
-        <SideNavItem to="https://etsy.com/doubleeuedesignco">Shop</SideNavItem>
+        <SideNavItem to="https://etsy.com/shop/doubleeuedesignco">
+          Shop
+        </SideNavItem>
       </ul>
       <ModalProvider>
         <ContactFormCTA>Contact</ContactFormCTA>
