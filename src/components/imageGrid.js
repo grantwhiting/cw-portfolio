@@ -44,7 +44,7 @@ const ImageGrid = ({ projects }) => {
         <motion.div variants={childVariants} key={item.id}>
           <Link
             to={item.uri}
-            className="relative block w-full mb-3 mr-3 cursor-pointer aspect-ratio-square bg-gray-50 break-inside-avoid"
+            className="relative block w-full mb-3 mr-3 cursor-pointer aspect-ratio-square break-inside-avoid"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -52,6 +52,7 @@ const ImageGrid = ({ projects }) => {
               className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-center bg-no-repeat bg-cover"
             >
               <GatsbyImage
+                backgroundColor="white"
                 image={getImage(item.featuredImage?.node.localFile)}
                 alt=""
                 className="object-cover w-full h-full rounded-xl"
