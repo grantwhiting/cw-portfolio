@@ -6,6 +6,7 @@ import { ModalProvider } from "../contexts/modal-provider";
 import ContactFormCTA from "./contactFormCTA";
 import { motion } from "framer-motion";
 import { StaticImage } from "gatsby-plugin-image";
+import Icon from "../images/insta-icon.svg";
 
 const spring = {
   type: "spring",
@@ -27,7 +28,7 @@ const SideNavItem = ({ to, children }) => {
   return (
     <li className="relative nav-item">
       <Link
-        className="flex items-center h-5 p-5 px-5 text-xl text-left rounded-sm text-5"
+        className="flex items-center h-5 p-5 px-5 text-xl text-left transition-colors rounded-sm text-5 hover:text-gray-500"
         activeClassName="nav-item--active"
         to={to}
       >
@@ -113,6 +114,12 @@ const SideNav = ({ onToggleMobileNav }) => {
       <ModalProvider>
         <ContactFormCTA>Contact</ContactFormCTA>
       </ModalProvider>
+      <Link
+        to="https://www.instagram.com/bycourtneywhiting/"
+        className="block mt-3 ml-6 w-9"
+      >
+        <Icon />
+      </Link>
     </nav>
   );
 };
