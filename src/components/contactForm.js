@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { StaticImage } from "gatsby-plugin-image";
 
 const CONTACT_MUTATION = gql`
   mutation CreateSubmissionMutation(
@@ -121,6 +122,11 @@ const ContactForm = () => {
         <>
           {!data && (
             <AnimatePresence>
+              <StaticImage
+                className="w-3/4 mb-6 ml-auto mr-auto"
+                src="../images/Contact-Header.png"
+                alt="Glasses logo"
+              />
               <motion.form
                 className="w-full"
                 initial={{ opacity: 0 }}
