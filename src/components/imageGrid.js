@@ -48,11 +48,10 @@ const ImageGrid = ({ projects }) => {
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.9 }}
+              whileTap={{ scale: 0.95 }}
               className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-center bg-no-repeat bg-cover"
             >
               <GatsbyImage
-                backgroundColor="white"
                 image={getImage(item.featuredImage?.node.localFile)}
                 alt=""
                 className="object-cover w-full h-full rounded-xl"
