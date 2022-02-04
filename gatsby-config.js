@@ -14,6 +14,14 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-client-side-redirect",
     {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      },
+    },
+    {
       resolve: "gatsby-plugin-sharp",
       options: {
         defaults: {
