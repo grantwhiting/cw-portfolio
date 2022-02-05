@@ -6,6 +6,10 @@
   font-family: "century-gothic", "sans-serif";
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
 @layer utilities {
   @for $i from 1 to 5 {
     .col-count-#{$i} {
