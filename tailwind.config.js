@@ -13,7 +13,7 @@ module.exports = {
           default: "#5e7076",
           darker: darken("#5e7076", 0.2),
           lighter: lighten("#5e7076", 0.2),
-          "75": alpha("#5e7076", 0.75),
+          75: alpha("#5e7076", 0.75),
         },
       },
     },
@@ -32,5 +32,8 @@ module.exports = {
     extend: {},
     aspectRatio: ["responsive"],
   },
-  plugins: [require("tailwindcss-aspect-ratio")],
+  plugins: [
+    require("tailwindcss-aspect-ratio"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
