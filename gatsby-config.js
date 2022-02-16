@@ -44,6 +44,7 @@ module.exports = {
       options: {
         url: process.env.GQL_URL,
         useACF: true,
+        protocol: "https",
       },
     },
     {
