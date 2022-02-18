@@ -11,7 +11,7 @@ import { StaticImage } from "gatsby-plugin-image";
 const Layout = ({ children }) => {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
   const [firstRender, setFirstRender] = useState(true);
-  const isMobile = useMatchMedia("(max-width: 768px)");
+  const isMobile = useMatchMedia("(max-width: 767px)");
 
   useEffect(() => setFirstRender(false), []);
 
