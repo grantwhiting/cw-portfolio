@@ -43,6 +43,20 @@
 		  $gallery_image_field_config
     );
 
+    // mail stuff
+    add_action( 'phpmailer_init', 'send_smtp_email' );
+    function send_smtp_email( $phpmailer ) {
+      $phpmailer->isSMTP();
+      $phpmailer->Host       = SMTP_HOST;
+      $phpmailer->SMTPAuth   = SMTP_AUTH;
+      $phpmailer->Port       = SMTP_PORT;
+      $phpmailer->SMTPSecure = SMTP_SECURE;
+      $phpmailer->Username   = SMTP_USERNAME;
+      $phpmailer->Password   = SMTP_PASSWORD;
+      $phpmailer->From       = SMTP_FROM;
+      $phpmailer->FromName   = SMTP_FROMNAME;
+    }
+
     register_graphql_mutation( 'createSubmission', [
       'inputFields' => [
         'name' => [
@@ -132,6 +146,8 @@
         // $headers = 'From: '. $contactEmail . "\r\n" .
         // 'Reply-To: ' . $contactEmail . "\r\n";
         // wp_mail( $to, $subject, strip_tags( $contactMessage ), $headers );
+
+        wp_mail("recipient@example.com", "Subject", "Message");
 
         return [
           'success' => true,
