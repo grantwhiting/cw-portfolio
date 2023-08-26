@@ -10,7 +10,7 @@ export const wrapRootElement = ({ element }) => (
 );
 
 export const wrapPageElement = ({ element }) => (
-  <AnimatePresence exitBeforeEnter initial={false}>
+  <AnimatePresence mode="wait" initial={false}>
     {element}
   </AnimatePresence>
 );
