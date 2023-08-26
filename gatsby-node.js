@@ -123,27 +123,27 @@ exports.createPages = async ({
     context: aboutPage.data.wpPage,
   });
 
-  // const downloadablePDFPage = await graphql(`
-  //   {
-  //     wpPage(title: { eq: "PDF" }) {
-  //       id
-  //       url
-  //       content
-  //     }
-  //   }
-  // `);
+  const downloadablePDFPage = await graphql(`
+    {
+      wpPage(title: { regex: "/download/i" }) {
+        id
+        uri
+        content
+      }
+    }
+  `);
 
-  // if (downloadablePDFPage.errors) {
-  //   reporter.error("There was an error fetching the Downloadable PDF Page");
-  // }
+  if (downloadablePDFPage.errors) {
+    reporter.error("There was an error fetching the Downloadable PDF Page");
+  }
 
-  // const downloadablePDFPageTemplate = path.resolve(
-  //   `${__dirname}/src/templates/pdfDownloadPage.js`
-  // );
+  const downloadablePDFPageTemplate = path.resolve(
+    `${__dirname}/src/templates/pdfDownloadPage.js`
+  );
 
-  // createPage({
-  //   path: downloadablePDFPage.data.wpPage.uri,
-  //   component: downloadablePDFPageTemplate,
-  //   context: downloadablePDFPage.data,
-  // });
+  createPage({
+    path: downloadablePDFPage.data.wpPage.uri,
+    component: downloadablePDFPageTemplate,
+    context: downloadablePDFPage.data.wpPage,
+  });
 };
