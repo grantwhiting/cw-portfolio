@@ -120,7 +120,7 @@ exports.createPages = async ({
   createPage({
     path: aboutPage.data.wpPage.uri,
     component: aboutPageTemplate,
-    context: aboutPage.data,
+    context: aboutPage.data.wpPage,
   });
 
   // const downloadablePDFPage = await graphql(`
