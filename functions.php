@@ -147,7 +147,7 @@
         // 'Reply-To: ' . $contactEmail . "\r\n";
         // wp_mail( $to, $subject, strip_tags( $contactMessage ), $headers );
 
-        wp_mail("recipient@example.com", "Subject", "Message");
+        wp_mail("hello@courtneywhiting.com", "Subject", "Message");
 
         return [
           'success' => true,

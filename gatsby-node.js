@@ -116,11 +116,34 @@ exports.createPages = async ({
   const aboutPageTemplate = path.resolve(
     `${__dirname}/src/templates/aboutPage.js`
   );
-  const { wpPage } = aboutPage.data;
+
+  createPage({
+    path: aboutPage.wpPage.uri,
+    component: aboutPageTemplate,
+    context: aboutPage.data,
+  });
+
+  const downloadablePDFPage = await graphql(`
+    {
+      wpPage(title: { eq: "PDF" }) {
+        id
+        url
+        content
+      }
+    }
+  `);
+
+  if (downloadablePDFPage.errors) {
+    reporter.error("There was an error fetching the Downloadable PDF Page");
+  }
+
+  const downloadablePDFPageTemplate = path.resolve(
+    `${__dirname}/src/templates/pdfDownloadPage.js`
+  );
 
   createPage({
     path: wpPage.uri,
-    component: aboutPageTemplate,
-    context: wpPage,
+    component: downloadablePDFPageTemplate,
+    context: downloadablePDFPage.data,
   });
 };
