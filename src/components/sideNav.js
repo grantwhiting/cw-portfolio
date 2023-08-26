@@ -69,7 +69,7 @@ const SideNav = ({ onToggleMobileNav }) => {
     .sort((a, b) => parseInt(a.description) - parseInt(b.description));
 
   const filterNavItems = filteredCategories.map((category) => (
-    <SideNavItem key={category.id} to={`/${category.slug}`}>
+    <SideNavItem key={category.id} to={`/${category.slug}/`}>
       {category.name}
     </SideNavItem>
   ));
@@ -106,7 +106,7 @@ const SideNav = ({ onToggleMobileNav }) => {
       <ul className="pt-3 space-y-1 md:mt-6">
         <SideNavItem to="/">Kids' Lit Illustrations</SideNavItem>
         {filterNavItems}
-        <SideNavItem to="/about">About</SideNavItem>
+        <SideNavItem to="/about/">About</SideNavItem>
         <SideNavItem to="https://etsy.com/shop/doubleeuedesignco">
           Shop
         </SideNavItem>
