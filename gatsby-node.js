@@ -125,7 +125,7 @@ exports.createPages = async ({
 
   const downloadablePDFPage = await graphql(`
     {
-      wpPage(title: { regex: "/download/i" }) {
+      wpPage(title: { regex: "/pdf/i" }) {
         id
         uri
         content
