@@ -13,6 +13,7 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-transformer-sharp",
     "gatsby-plugin-client-side-redirect",
+    "gatsby-plugin-netlify",
     {
       resolve: "gatsby-plugin-react-svg",
       options: {
